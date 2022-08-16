@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-
+// Base code from https://sharpcoderblog.com/blog/unity-3d-fps-controller
 public class FirstPersonController: MonoBehaviour
 {
     public float walkingSpeed = 7.5f;
