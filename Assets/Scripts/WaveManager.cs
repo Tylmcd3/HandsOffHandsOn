@@ -57,6 +57,20 @@ public class WaveManager : MonoBehaviour
             EndWave();
         }
     }
+
+    public void StartWave()
+    {
+        waveActive = true;
+        // Whatever else needs to be done at start of wave
+    }
+
+    // Overload if we need to start at specific wave
+    public void StartWave(int wave)
+    {
+        waveActive = true;
+        currentWave = wave;
+        // ...
+    }
     public void EndWave()
     {
         // Either kill all active enemies or create a list of enemies that need to be
@@ -66,9 +80,11 @@ public class WaveManager : MonoBehaviour
         if (currentWave == totalWaves)
         {
             // ... 
+            GetComponent<GameStateManager>().EndGame();
 
             return;
         }
+        // Otherwise start the break to move into next wave
         StartCoroutine(Break());
     }
 
@@ -84,6 +100,6 @@ public class WaveManager : MonoBehaviour
     {
         // Increment current wave and set wave to active
         currentWave++;
-        waveActive = true;
+        StartWave();
     }
 }

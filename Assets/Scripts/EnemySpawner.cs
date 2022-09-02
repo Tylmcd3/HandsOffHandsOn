@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         // Only spawn enemies if a wave is active & game active 
         if (gsManager.gameActive && waveManager.waveActive)
         {
+            // TODO this should probably be switched to coroutines so that we can do multiple per interval
             // Also only increment timer if need be
             timer += Time.deltaTime;
             if (timer >= timeToSpawn)
@@ -71,6 +72,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemies[toSpawn], transform.position, transform.rotation);
         // For demo...
         enemy.GetComponent<Rigidbody>().AddForce(new Vector3(500, 0, 300));
+
+        // Finally increment global enemy count
+        gsManager.AddEnemy();
 
     }
 

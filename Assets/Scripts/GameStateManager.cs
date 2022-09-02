@@ -7,10 +7,17 @@ public class GameStateManager : MonoBehaviour
 {
     // Other objects can reference this to know if they should act
     public bool gameActive = false; // Default false
+
+    // TODO which should we do for counting enemies?
+    // Either have a list of all enemies (more costly)
+    // Or just have an int that we increment/decrement (less overhead, less information)
+    //public List<GameObject> enemies; // Global list of all enemies
+    public int enemiesInScene; // Global count of all enemies
     WaveManager waveManager;
     // Start is called before the first frame update
     void Start()
     {
+        enemiesInScene = 0;
         waveManager = GetComponent<WaveManager>();
     }
 
@@ -20,21 +27,33 @@ public class GameStateManager : MonoBehaviour
 
     }
 
+    public void AddEnemy()
+    {
+        // ...
+        enemiesInScene++;
+    }
+
+    public void RemoveEnemy()
+    {
+        // ...
+        enemiesInScene--;
+    }
+
     // Sets game active to false, calls UI?
-    void Pause()
+    public void Pause()
     {
         gameActive = false;
     }
 
-    // Lose state here
-    void Lose()
+    // Starts game off at first wave
+    public void StartGame()
     {
-
+        waveManager.StartWave(1);
     }
 
-    // Win state here
-    void Win()
+    public void EndGame()
     {
-
+        // Check if player has won or lost and handle cleanup
+        // ...
     }
 }
