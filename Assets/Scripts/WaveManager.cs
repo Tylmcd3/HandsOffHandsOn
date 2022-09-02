@@ -17,15 +17,15 @@ public class WaveManager : MonoBehaviour
 
     // Used if doing enemy spawn based waves
     public int currentKills;
-    public int totalKills = 30; // Default 50 enemies
+    public int totalKills = 30; // Default 30 enemies
 
     void Start()
     {
-        // Default to 0th wave
-        currentWave = 0;
+        // Default to 1st wave
+        currentWave = 1;
 
-        // Default to 0 time and 0 enemies killed
-        currentTime = 0;
+        // Default to max time and 0 enemies killed
+        currentTime = waveLength;
         currentKills = 0;
     }
 
@@ -34,39 +34,41 @@ public class WaveManager : MonoBehaviour
     {
         // Timer logic for time based waves
         // Only increment time if wave is currently active
-        if (waveActive) currentTime += Time.deltaTime;
-        if (currentTime >= waveLength)
+        if (waveActive) currentTime -= Time.deltaTime;
+        if (currentTime <= 0)
         {
-            // End Wave
-            EndWave();
-
             waveActive = false;
             // Reset Timer
-            currentTime = 0;
+            currentTime = waveLength;
+
+            // End Wave
+            EndWave();
         }
 
         // Enemy spawn counter for enemy based waves
-        // Need some external method to increment currentKills
+        // TODO Need some external method to increment currentKills
         if (currentKills >= totalKills)
         {
-            // End Wave
-            EndWave();
-
             waveActive = false;
             // Reset kill count
             currentKills = 0;
+
+            // End Wave
+            EndWave();
         }
     }
     public void EndWave()
     {
-        // Need to ensure all enemies are killed, and deactivate spawners
-
-        // First deactivate spawners 
-        // To deactivate spawners have each spawner reference the wave manager and check for waveactive
-
-        // Then either kill all active enemies or create a list of enemies that need be 
+        // Either kill all active enemies or create a list of enemies that need to be
         // Killed before wave can advance
 
+        // Finally, if currentWave == totalWaves, initiate win state (just ended last wave)
+        if (currentWave == totalWaves)
+        {
+            // ... 
+
+            return;
+        }
         StartCoroutine(Break());
     }
 
