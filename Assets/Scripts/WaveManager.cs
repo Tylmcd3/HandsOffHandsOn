@@ -58,6 +58,11 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void PauseWave()
+    {
+        // ...
+    }
+
     public void StartWave()
     {
         waveActive = true;

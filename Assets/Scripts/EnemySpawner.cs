@@ -52,7 +52,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         // Select a random enemy from enemies list based on weights
-        float weight = Random.Range(0, 1);
+        float weight = Random.Range(0.0f, 1.0f);
+        Debug.Log(weight);
         int toSpawn = 0;
 
         for (int i = 0; i < weights.Length; i++)
@@ -65,16 +66,17 @@ public class EnemySpawner : MonoBehaviour
             {
                 // Spawn this enemy
                 toSpawn = i;
+
+                // Spawning logic here
+                GameObject enemy = Instantiate(enemies[toSpawn], transform.position, transform.rotation);
+
+                // For demo...
+                enemy.GetComponent<Rigidbody>().AddForce(new Vector3(500, 0, 300));
+
+                // Finally increment global enemy count
+                gsManager.AddEnemy();
             }
         }
-
-        // Spawning logic here
-        GameObject enemy = Instantiate(enemies[toSpawn], transform.position, transform.rotation);
-        // For demo...
-        enemy.GetComponent<Rigidbody>().AddForce(new Vector3(500, 0, 300));
-
-        // Finally increment global enemy count
-        gsManager.AddEnemy();
 
     }
 
