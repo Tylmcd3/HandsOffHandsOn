@@ -46,7 +46,7 @@ namespace Q3Movement
 
         private CharacterController m_Character;
         private Vector3 m_MoveDirectionNorm = Vector3.zero;
-        private Vector3 m_PlayerVelocity = Vector3.zero;
+        public Vector3 m_PlayerVelocity = Vector3.zero;
 
         // Used to queue the next jump just before hitting the ground.
         private bool m_JumpQueued = false;
