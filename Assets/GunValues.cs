@@ -42,11 +42,10 @@ public class GunValues : MonoBehaviour
     public GameObject AKMuzzleFlash;
     public GameObject GGMuzzleFlash;
     public GameObject GoldenGunModel;
-    public GunClass newGun;
-    public GunClass GoldenGun = new GunClass(10, 1, 10, "GoldenGun", 0.3f, 2);
+    public GunClass GoldenGun = new GunClass(10, 1, 10, "GoldenGun", 0.3f, 2, true);
     
     public GameObject AK47Model;
-    public GunClass AK47 = new GunClass(2, 25, 50, "AK47",0.1f, 2);
+    public GunClass AK47 = new GunClass(2, 25, 50, "AK47", 0.1f, 2, false);
     private void Start()
     {
         GoldenGun.MuzzleFlash = GGMuzzleFlash;
