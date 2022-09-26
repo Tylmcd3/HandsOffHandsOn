@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour
 
     // Used if doing enemy spawn based waves
     public int currentKills;
-    public int totalKills = 30; // Default 30 enemies
+    public int totalKills = 10; // Default 10 enemies
 
     void Start()
     {
@@ -34,16 +34,16 @@ public class WaveManager : MonoBehaviour
     {
         // Timer logic for time based waves
         // Only increment time if wave is currently active
-        if (waveActive) currentTime -= Time.deltaTime;
-        if (currentTime <= 0)
-        {
-            waveActive = false;
-            // Reset Timer
-            currentTime = waveLength;
-
-            // End Wave
-            EndWave();
-        }
+        // if (waveActive) currentTime -= Time.deltaTime;
+        // if (currentTime <= 0)
+        // {
+        //     waveActive = false;
+        //     // Reset Timer
+        //     currentTime = waveLength;
+        //
+        //     // End Wave
+        //     EndWave();
+        // }
 
         // Enemy spawn counter for enemy based waves
         // TODO Need some external method to increment currentKills
@@ -78,8 +78,9 @@ public class WaveManager : MonoBehaviour
     }
     public void EndWave()
     {
-        // Either kill all active enemies or create a list of enemies that need to be
-        // Killed before wave can advance
+        // Grab enemy count from gamestatemanager
+        // Don't continue until enemies == 0
+        // only need to do this if doing time based
 
         // Finally, if currentWave == totalWaves, initiate win state (just ended last wave)
         if (currentWave == totalWaves)

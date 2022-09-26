@@ -69,11 +69,16 @@ void Reload()
                 CurrentGunStruct.MuzzleFlash.SetActive(true);
                 CurrentGunStruct.Clip--;
                 Debug.Log(CurrentGunStruct.Clip);
+                
+                // visual effect at point hit
+                
+                // enemy damage
                 if (hit.transform.gameObject.GetComponents<EnemyDamageAndHealth>().Length != 0)
                 {
                     Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                     hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
                 }
+                // reload
                 if (CurrentGunStruct.Clip <= 0)
                 {
                     Reload();
