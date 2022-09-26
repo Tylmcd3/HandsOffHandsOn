@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GunNameSpace;
+using Unity.VisualScripting;
+
 public class Guns : MonoBehaviour
 {
     GunValues GunStore;
@@ -12,6 +15,9 @@ public class Guns : MonoBehaviour
 
     float TimeTillNextFire = 0;
 
+    private Ray drawRay;
+
+    private Vector3 hitPoint;
     // Start is called before the first frame update
 
     void Start()
@@ -36,7 +42,7 @@ public class Guns : MonoBehaviour
                 break;
             }
     }
-void Reload()
+    void Reload()
     {
         Debug.Log(CurrentGunStruct.CurrReserveAmmo);
         if (CurrentGunStruct.CurrReserveAmmo > CurrentGunStruct.ClipSize)
@@ -64,16 +70,17 @@ void Reload()
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            drawRay = ray;
+            if (Physics.Raycast(ray, out hit, 1000.0f))
             {
                 CurrentGunStruct.MuzzleFlash.SetActive(true);
                 CurrentGunStruct.Clip--;
                 Debug.Log(CurrentGunStruct.Clip);
                 
                 // visual effect at point hit
-                
+                hitPoint = hit.point;
                 // enemy damage
-                if (hit.transform.gameObject.GetComponents<EnemyDamageAndHealth>().Length != 0)
+                if (hit.transform.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                     hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
@@ -96,6 +103,7 @@ void Reload()
         }
     }
     // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         TimeTillNextFire -= Time.deltaTime; 
@@ -117,6 +125,13 @@ void Reload()
             }
            
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(drawRay);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(hitPoint, 1);
     }
 }
 
