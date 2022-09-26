@@ -20,6 +20,8 @@ public class EnemyDamageAndHealth : MonoBehaviour
         Destroy(this.gameObject);
         // find wave manager and notify of kill
         gsManager.RemoveEnemy();
+        // drop weapon
+        GetComponent<EnemyDropWeapon>().DropWeapon();
     }
 
     public void DealDamage(int DamageDealt)
