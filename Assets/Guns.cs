@@ -14,9 +14,7 @@ public class Guns : MonoBehaviour
     GunClass CurrentGunStruct = null;
 
     float TimeTillNextFire = 0;
-
-    private Ray drawRay;
-
+    
     private Vector3 hitPoint;
     // Start is called before the first frame update
 
@@ -70,18 +68,19 @@ public class Guns : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            drawRay = ray;
-            if (Physics.Raycast(ray, out hit, 1000.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 CurrentGunStruct.MuzzleFlash.SetActive(true);
                 CurrentGunStruct.Clip--;
                 Debug.Log(CurrentGunStruct.Clip);
                 
                 // visual effect at point hit
-                hitPoint = hit.point;
+
                 // enemy damage
                 if (hit.transform.gameObject.CompareTag("Enemy"))
                 {
+                    // knockback enemy a bit
+                    //hit.transform.gameObject.GetComponent<Rigidbody>().
                     Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                     hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
                 }
@@ -125,13 +124,6 @@ public class Guns : MonoBehaviour
             }
            
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(drawRay);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(hitPoint, 1);
     }
 }
 

@@ -14,15 +14,17 @@ public class RangedEnemyNavigation : MonoBehaviour
     [SerializeField]
     private Transform target;
     private NavMeshAgent enemy;
+    private RangedEnemyAttack attackScript;
         
     // Attack logic
-    private float attackTime;
+    [SerializeField] private float attackTime = 1;
     private bool attacked;
 
     public float attackRange;
     public bool targetInRange;
-    [SerializeField]
+    
     private LayerMask playerLayer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class RangedEnemyNavigation : MonoBehaviour
         if (!target) target = transform; // just in case
         
         enemy = GetComponent<NavMeshAgent>();
+        attackScript = GetComponent<RangedEnemyAttack>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class RangedEnemyNavigation : MonoBehaviour
         if (!attacked)
         {
             // Attack logic
+            attackScript.RangedAttack(target.position);
             // ...
             attacked = true;
             Invoke(nameof(ResetAttack), attackTime);

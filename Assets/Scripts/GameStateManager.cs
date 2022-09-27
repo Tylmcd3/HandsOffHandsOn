@@ -30,7 +30,7 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
         // can change later
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Pause();
         }
@@ -60,7 +60,7 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = Convert.ToInt32(gameActive);
         // Also disable player controller because of look at mouse
         GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = gameActive;
-        // TODO still need to fully disable gunfire 
+        // TODO still need to fully disable gunfire (tad buggy)
         // Load pause UI
         pauseMenu.SetActive(!gameActive);
         // ...
