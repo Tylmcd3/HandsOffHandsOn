@@ -15,7 +15,7 @@ public class RangedEnemyAttack : MonoBehaviour
         // Direction to shoot raycast
         direction = (target - transform.position).normalized;
         // TODO tweak the delay
-        Invoke(nameof(Shoot), 0.08f); // delay shoot
+        Invoke(nameof(Shoot), 0.075f); // delay shoot
     }
     // Invoked shoot function
     private void Shoot()
@@ -28,6 +28,11 @@ public class RangedEnemyAttack : MonoBehaviour
             hitPoint = hit.point;
             // TODO damage player and do whatever else
             // ...
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                // TODO REMOVE THIS 
+                hit.transform.gameObject.GetComponent<PlayerDamageFlash>().FlashScreen();
+            }
         }
     }
 
