@@ -79,8 +79,6 @@ public class Guns : MonoBehaviour
                 // enemy damage
                 if (hit.transform.gameObject.CompareTag("Enemy"))
                 {
-                    // knockback enemy a bit
-                    //hit.transform.gameObject.GetComponent<Rigidbody>().
                     Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                     hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
                 }

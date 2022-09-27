@@ -128,18 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 478336028895954919, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
   m_PrefabInstance: {fileID: 68717632}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &20913977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20913968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7c8103fc914b042a44ee5d3a86e965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &20913978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &62260355
 Transform:
   m_ObjectHideFlags: 0
@@ -299,6 +287,10 @@ PrefabInstance:
       propertyPath: baseHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 478336028895954906, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -350,18 +342,6 @@ PrefabInstance:
     - target: {fileID: 478336028895954919, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325523958472290690, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325523958472290690, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
-      propertyPath: attackTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6325523958472290690, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
-      propertyPath: attackRange
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -8115,7 +8095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40c4f65f5eec594790c9a5f1a605cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingWeapon: 2
+  StartingWeapon: 1
 --- !u!114 &1027911547
 MonoBehaviour:
   m_ObjectHideFlags: 0

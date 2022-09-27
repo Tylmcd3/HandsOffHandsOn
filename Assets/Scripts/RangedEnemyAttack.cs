@@ -24,7 +24,7 @@ public class RangedEnemyAttack : MonoBehaviour
         Ray ray = new Ray(transform.position, direction);
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
-            Debug.Log("Hit " + hit.transform.gameObject.name);
+            //Debug.Log("Hit " + hit.transform.gameObject.name);
             hitPoint = hit.point;
             // TODO damage player and do whatever else
             // ...

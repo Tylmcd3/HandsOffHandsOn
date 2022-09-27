@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: -1232702195536868017}
   - component: {fileID: 6325523958472290690}
   - component: {fileID: -373131651482940160}
+  - component: {fileID: 6467084534291610408}
   m_Layer: 7
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -150,7 +151,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!195 &172120635
 NavMeshAgent:
@@ -215,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   attackTime: 1
-  attackRange: 5
+  attackRange: 8
   targetInRange: 0
 --- !u!114 &-373131651482940160
 MonoBehaviour:
@@ -231,3 +232,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColour: {r: 1, g: 0.33395344, b: 0.23921567, a: 0.18431373}
   flashTime: 0.2
+--- !u!114 &6467084534291610408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478336028895954919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7c8103fc914b042a44ee5d3a86e965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
