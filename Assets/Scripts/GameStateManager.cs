@@ -30,7 +30,7 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
         // can change later
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
