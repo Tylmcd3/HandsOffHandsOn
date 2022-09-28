@@ -16,10 +16,14 @@ public class Guns : MonoBehaviour
     float TimeTillNextFire = 0;
     
     private Vector3 hitPoint;
+    
+    private LayerMask weaponLayer;
     // Start is called before the first frame update
 
     void Start()
     {
+        // need to ignore dropped weapons for raycast
+        weaponLayer = LayerMask.GetMask("Weapon");
         GunStore = GetComponent<GunValues>();
         Inventory.Add(StartingWeapon);
         Inventory.Add(GunEnum.AK47);
@@ -68,7 +72,7 @@ public class Guns : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
             {
                 CurrentGunStruct.MuzzleFlash.SetActive(true);
                 CurrentGunStruct.Clip--;

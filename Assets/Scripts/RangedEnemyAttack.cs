@@ -8,6 +8,8 @@ public class RangedEnemyAttack : MonoBehaviour
     private Vector3 hitPoint;
     private Vector3 direction;
 
+    [SerializeField] private float attackDelay = 0.075f;
+
     // Calc position to shoot at and call shoot function
     public void RangedAttack(Vector3 target)
     {
@@ -15,7 +17,7 @@ public class RangedEnemyAttack : MonoBehaviour
         // Direction to shoot raycast
         direction = (target - transform.position).normalized;
         // TODO tweak the delay
-        Invoke(nameof(Shoot), 0.075f); // delay shoot
+        Invoke(nameof(Shoot), attackDelay); // delay shoot
     }
     // Invoked shoot function
     private void Shoot()

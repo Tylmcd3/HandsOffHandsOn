@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 6325523958472290690}
   - component: {fileID: -373131651482940160}
   - component: {fileID: 6467084534291610408}
+  - component: {fileID: 3675788415479772462}
   m_Layer: 7
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -215,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attackTime: 1
+  attackTime: 2
   attackRange: 8
   targetInRange: 0
 --- !u!114 &-373131651482940160
@@ -244,3 +245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7c8103fc914b042a44ee5d3a86e965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDelay: 0.075
+--- !u!114 &3675788415479772462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478336028895954919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4526d9e9c5b089b44b29c0d36ec03e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponToDrop: {fileID: 2022020525554770337, guid: 02d333f6bf531c346bb34cf3ed3b1be8, type: 3}

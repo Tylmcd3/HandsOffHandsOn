@@ -63,6 +63,12 @@ public class WaveManager : MonoBehaviour
         // ...
     }
 
+    void Reset()
+    {
+        currentKills = 0;
+        waveActive = false;
+    }
+
     public void StartWave()
     {
         waveActive = true;
@@ -87,7 +93,7 @@ public class WaveManager : MonoBehaviour
         {
             // ... 
             GetComponent<GameStateManager>().EndGame();
-
+            Reset();
             return;
         }
         // Otherwise start the break to move into next wave

@@ -10,8 +10,8 @@ public class GameStateManager : MonoBehaviour
     // Other objects can reference this to know if they should act
     public bool gameActive = false; // Default false
 
-    [SerializeField]
-    private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject endMenu;
 
     // TODO which should we do for counting enemies?
     // Either have a list of all enemies (more costly)
@@ -24,12 +24,13 @@ public class GameStateManager : MonoBehaviour
     {
         enemiesInScene = 0;
         waveManager = GetComponent<WaveManager>();
+        StartGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // can change later
+        // TODO change to escape, T is easier when debugging
         if (Input.GetKeyDown(KeyCode.T))
         {
             Pause();
@@ -49,8 +50,7 @@ public class GameStateManager : MonoBehaviour
         enemiesInScene--;
     }
 
-    // Sets game active to false, calls UI, etc
-    public void Pause()
+    public void StopGame()
     {
         Debug.Log("Paused!");
         // Disable most game logic
@@ -61,6 +61,13 @@ public class GameStateManager : MonoBehaviour
         // Also disable player controller because of look at mouse
         GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = gameActive;
         // TODO still need to fully disable gunfire (tad buggy)
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    // Sets game active to false, calls UI, etc
+    public void Pause()
+    {
+        StopGame();
         // Load pause UI
         pauseMenu.SetActive(!gameActive);
         // ...
@@ -69,12 +76,17 @@ public class GameStateManager : MonoBehaviour
     // Starts game off at first wave
     public void StartGame()
     {
+        gameActive = true;
+        Time.timeScale = 1;
+        GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = true;
         waveManager.StartWave(1);
     }
 
     public void EndGame()
     {
+        StopGame();
         // Check if player has won or lost and handle cleanup
-        // ...
+        // Load endgameMenu etc
+        endMenu.SetActive(true);
     }
 }

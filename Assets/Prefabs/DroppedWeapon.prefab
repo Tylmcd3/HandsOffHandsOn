@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 777831579504907768}
   - component: {fileID: 5871592789412130476}
   - component: {fileID: 850030415488332534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AK-47
   m_TagString: DroppedWeapon
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 6634287279316243177}
   - component: {fileID: 5930138897696578899}
   - component: {fileID: 5793640123024865985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DroppedWeapon
   m_TagString: DroppedWeapon
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &3724132270621157977
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 3971126672420892775}
   - component: {fileID: 1192366234827248219}
   - component: {fileID: 7459515845243141709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ak_47_Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 1747719617748823727}
   - component: {fileID: 948871718266995338}
   - component: {fileID: 1200429186911479151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AK_47_Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

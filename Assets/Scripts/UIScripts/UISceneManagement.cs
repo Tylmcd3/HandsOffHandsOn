@@ -18,4 +18,11 @@ public class UISceneManagement : MonoBehaviour
     {
         toToggle.SetActive(!toToggle.activeSelf);
     }
+
+    // Closes game
+    // Probably doesn't work in webgl
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
