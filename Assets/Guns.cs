@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GunNameSpace;
+using Spektr;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 
 public class Guns : MonoBehaviour
@@ -18,12 +20,15 @@ public class Guns : MonoBehaviour
     private Vector3 hitPoint;
     
     private LayerMask weaponLayer;
+
+    private LayerMask enemyLayer;
     // Start is called before the first frame update
 
     void Start()
     {
         // need to ignore dropped weapons for raycast
         weaponLayer = LayerMask.GetMask("Weapon");
+        enemyLayer = LayerMask.GetMask("Enemy");
         GunStore = GetComponent<GunValues>();
         Inventory.Add(StartingWeapon);
         Inventory.Add(GunEnum.AK47);
@@ -70,27 +75,41 @@ public class Guns : MonoBehaviour
         //If Have Ammo in the clip
         if (CurrentGunStruct.Clip > 0)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
+            // If its a normal gun continue
+            if (!CurrentGunStruct.SpecialBehaviour)
             {
-                CurrentGunStruct.MuzzleFlash.SetActive(true);
-                CurrentGunStruct.Clip--;
-                Debug.Log(CurrentGunStruct.Clip);
-                
-                // visual effect at point hit
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
+                {
+                    CurrentGunStruct.MuzzleFlash.SetActive(true);
+                    CurrentGunStruct.Clip--;
+                    Debug.Log(CurrentGunStruct.Clip);
 
-                // enemy damage
-                if (hit.transform.gameObject.CompareTag("Enemy"))
-                {
-                    Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
-                    hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
+                    // visual effect at point hit
+
+                    // enemy damage
+                    if (hit.transform.gameObject.CompareTag("Enemy"))
+                    {
+                        Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+                        hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>()
+                            .DealDamage(CurrentGunStruct.Damage);
+                    }
                 }
-                // reload
-                if (CurrentGunStruct.Clip <= 0)
+            }
+            else
+            {
+                switch (CurrentGun)
                 {
-                    Reload();
+                    case GunEnum.LightningGun:
+                        GetComponent<LightningGun>().ShootLightning(CurrentGunStruct, weaponLayer, enemyLayer);
+                        break;
                 }
+            }
+            // reload
+            if (CurrentGunStruct.Clip <= 0)
+            {
+                Reload();
             }
         }
         //If Picked up Amnmo
@@ -126,6 +145,12 @@ public class Guns : MonoBehaviour
             }
            
         }
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(hitPoint, 7);
     }
 }
 
