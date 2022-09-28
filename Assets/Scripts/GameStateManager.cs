@@ -62,6 +62,7 @@ public class GameStateManager : MonoBehaviour
         GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = gameActive;
         // TODO still need to fully disable gunfire (tad buggy)
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Sets game active to false, calls UI, etc

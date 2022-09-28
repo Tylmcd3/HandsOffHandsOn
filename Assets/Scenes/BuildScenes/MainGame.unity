@@ -12116,14 +12116,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 0}
   m_MouseLook:
-    m_XSensitivity: 2
-    m_YSensitivity: 2
+    m_XSensitivity: 1.5
+    m_YSensitivity: 1.5
     m_ClampVerticalRotation: 1
     m_MinimumX: -90
     m_MaximumX: 90
     m_Smooth: 0
     m_SmoothTime: 5
     m_LockCursor: 1
+    m_cursorIsLocked: 1
   m_Friction: 6
   m_Gravity: 20
   m_JumpForce: 8
