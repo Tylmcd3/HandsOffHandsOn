@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GunNameSpace;
-using Spektr;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 
 public class Guns : MonoBehaviour
 {

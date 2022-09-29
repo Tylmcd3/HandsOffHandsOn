@@ -77,6 +77,15 @@ public class RangedEnemyNavigation : MonoBehaviour
         attacked = false;
     }
 
+    // stops enemy for time
+    public IEnumerator Stop(float time)
+    {
+        float temp = enemy.speed;
+        enemy.speed = 0;
+        yield return new WaitForSeconds(time);
+        enemy.speed = temp;
+    }
+
     public void SetSpeed(float speed)
     {
         enemy.speed = speed;
@@ -87,10 +96,10 @@ public class RangedEnemyNavigation : MonoBehaviour
         enemy.speed = speed;
         enemy.acceleration = accel;
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        // Gizmos.color = Color.red;
-        // Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
+    
+    // private void OnDrawGizmosSelected()
+    // {
+    //     // Gizmos.color = Color.red;
+    //     // Gizmos.DrawWireSphere(transform.position, attackRange);
+    // }
 }

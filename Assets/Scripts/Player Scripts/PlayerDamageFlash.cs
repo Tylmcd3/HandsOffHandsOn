@@ -6,6 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerDamageFlash : MonoBehaviour
 {
+    [SerializeField] private float intensityCap = 0.25f;
     public PostProcessVolume volume;
     private Vignette red;
 
@@ -37,8 +38,8 @@ public class PlayerDamageFlash : MonoBehaviour
 
     public void FlashScreen()
     {
-        // add 0.15, cap at 0.4
-        red.intensity.value += (red.intensity.value < 0.15f)? 0.15f : 0.4f - red.intensity.value;
+        // add 0.15, cap at cap
+        red.intensity.value += (red.intensity.value < 0.15f)? 0.15f : intensityCap - red.intensity.value;
         red.active = true;
     }
 }

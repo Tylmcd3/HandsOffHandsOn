@@ -54,7 +54,7 @@ public class GunValues : MonoBehaviour
     public GunClass AK47 = new GunClass(2, 25, 50, "AK47", 0.1f, 2, false, false);
 
     public GameObject LightningGunModel;
-    public GunClass LightningGun = new GunClass(5, 10, 10, "Lightning", 0.3f, 1, false, true);
+    public GunClass LightningGun = new GunClass(3, 10, 10, "Lightning", 0.3f, 1, false, true);
     private void Start()
     {
         GoldenGun.MuzzleFlash = GGMuzzleFlash;
