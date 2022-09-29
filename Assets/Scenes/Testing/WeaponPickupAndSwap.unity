@@ -2865,7 +2865,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6358
+  m_Name: pb_Mesh28128
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9590,6 +9590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e863cc5f8141f1e4fbf50e174819050a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFallOff: 3
+  maxEnemies: 5
   lightning: {fileID: 425429654073489185, guid: d2d254e27abe7f348b6bc9e39b3739d9, type: 3}
   shootPoint: {fileID: 7796595037927237691}
   lightningHits: []

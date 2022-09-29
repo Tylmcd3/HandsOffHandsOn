@@ -8,8 +8,15 @@ using UnityEngine;
 
 public class LightningGun : MonoBehaviour
 {
+    // How many enemies before damage falls off
+    [SerializeField] private int damageFallOff = 3; 
+    // cap of enemies able to hit default 5
+    [SerializeField] private int maxEnemies = 5; 
+    // lightning prefab
     [SerializeField] private GameObject lightning;
+    // point to shoot lightning from gun
     [SerializeField] private Transform shootPoint;
+    
     private Vector3 hitPoint;
     
     public List<Transform> lightningHits = new List<Transform>();
@@ -89,10 +96,11 @@ public class LightningGun : MonoBehaviour
         lightningHits.Insert(0, shootPoint);
         // List of prefabs to spawn
         List<GameObject> prefabs = new List<GameObject>();
-        
+
+        int enemies = (lightningHits.Count - 1 < maxEnemies) ? lightningHits.Count - 1 : maxEnemies;
         // Loop through each lightning hit and spawn a prefab linking the hit and the next one
         // After that destroy each one after some time
-        for (int i = 0; i < lightningHits.Count - 1; i++)
+        for (int i = 0; i < enemies; i++)
         {
             prefabs.Add(Instantiate(lightning, lightningHits[i].position, quaternion.identity));
             prefabs[i].GetComponent<LightningRenderer>().receiverTransform = lightningHits[i + 1];
@@ -101,8 +109,9 @@ public class LightningGun : MonoBehaviour
             float time = 0.35f + (i * 0.15f);
             // Destroy prefabs in order then deal damage
             StartCoroutine(DestroyLightning(time, prefabs[i]));
-
-            int damage = baseDamage + (4 / (i + 1));
+            
+            // Damage falls off
+            int damage = baseDamage + (damageFallOff / (i + 1));
             StartCoroutine(LightningDamage(time - 0.15f, damage,
                 lightningHits[i + 1].GetComponentInParent<EnemyDamageAndHealth>()));
         }
@@ -118,7 +127,6 @@ public class LightningGun : MonoBehaviour
     // Deals damage after some time
     IEnumerator LightningDamage(float time, int damage, EnemyDamageAndHealth enemy)
     {
-        Debug.Log("Damage here");
         yield return new WaitForSeconds(time);
         enemy.DealDamage(damage);
     }
