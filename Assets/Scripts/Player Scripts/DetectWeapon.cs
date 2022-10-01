@@ -16,9 +16,10 @@ public class DetectWeapon : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(weapons.Count);
         if (weapons.Count > 0)
         {
-            UpdateWeapons(ClosestObject(weapons));
+            UpdateWeapons(ClosestObject());
         }
         else
         {
@@ -26,11 +27,11 @@ public class DetectWeapon : MonoBehaviour
         }
     }
 
-    GameObject ClosestObject(List<GameObject> list)
+    GameObject ClosestObject()
     {
         // Closest is at index 0 by default
         GameObject returnObject = weapons[0];
-        float dist = Vector3.Distance(list[0].transform.position, transform.position);
+        float dist = Vector3.Distance(weapons[0].transform.position, transform.position);
 
         foreach (GameObject g in weapons)
         {
@@ -50,8 +51,10 @@ public class DetectWeapon : MonoBehaviour
     {
         if (collider.gameObject.tag == "DroppedWeapon")
         {
+            // LAZY BANDAID FIX, THE WEAPONS GET ADDED TWICE BY DEFAULT CUS UNITY SUCK
             // Add the weapon to list
-            weapons.Add(collider.gameObject);
+            if(!weapons.Contains(collider.gameObject)) 
+                weapons.Add(collider.gameObject);
         }
     }
 
@@ -79,5 +82,15 @@ public class DetectWeapon : MonoBehaviour
                 g.GetComponent<WeaponGlow>().UnselectWeapon();
             }
         }
+    }
+
+    public void RemoveSelected()
+    {
+        // TODO fix this
+        // selected.SetActive(false);
+        weapons.Remove(selected);
+        Debug.Log("removed " + weapons.Count);
+        Destroy(selected);
+        selected = null;
     }
 }

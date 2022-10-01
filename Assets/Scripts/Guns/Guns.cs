@@ -7,33 +7,44 @@ using GunNameSpace;
 public class Guns : MonoBehaviour
 {
     GunValues GunStore;
-    List<GunEnum> Inventory = new List<GunEnum>();
+    // max number of guns in inventory
+    public int maxGuns = 3;
+    public List<GunEnum> Inventory;
     public GunEnum StartingWeapon;
+    public int currentSlot = 0;
     GunEnum CurrentGun;
     GunClass CurrentGunStruct = null;
 
     float TimeTillNextFire = 0;
     
     private Vector3 hitPoint;
-    
     private LayerMask weaponLayer;
-
     private LayerMask enemyLayer;
     // Start is called before the first frame update
 
     void Start()
     {
+        Inventory = new List<GunEnum>(maxGuns) { GunEnum.NoGun };
+        // initialize inventory
+        for (int i = 0; i < maxGuns; i++)
+        {
+            Inventory.Insert(i, GunEnum.NoGun);
+        }
+        Inventory.Insert(0, StartingWeapon);
+
         // need to ignore dropped weapons for raycast
         weaponLayer = LayerMask.GetMask("Weapon");
         enemyLayer = LayerMask.GetMask("Enemy");
         GunStore = GetComponent<GunValues>();
-        Inventory.Add(StartingWeapon);
-        Inventory.Add(GunEnum.AK47);
+
         CurrentGun = StartingWeapon;
         CurrentGunStruct = GunStore.SwapGun(GunEnum.NoGun, null, StartingWeapon);
     }
-    void ChangeWeapon(GunEnum weaponToChange)
+    public void ChangeWeapon(GunEnum weaponToChange)
     {
+        // disable muzzle
+        CurrentGunStruct.MuzzleFlash.SetActive(false);
+
         CurrentGunStruct  = GunStore.SwapGun(CurrentGun, CurrentGunStruct, weaponToChange);
         CurrentGun = weaponToChange;
     }
@@ -66,6 +77,13 @@ public class Guns : MonoBehaviour
         {
             ChangeToNextGun();
         }
+    }
+
+    // Fully reloads weapons clip to clipsize + reserve
+    public void FullReload()
+    {
+        CurrentGunStruct.Clip = CurrentGunStruct.ClipSize;
+        CurrentGunStruct.CurrReserveAmmo = CurrentGunStruct.ReserveAmmoStart;
     }
     void FireCurrWeapon()
     {
@@ -126,11 +144,19 @@ public class Guns : MonoBehaviour
         TimeTillNextFire -= Time.deltaTime; 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeWeapon(Inventory[1]);
+            ChangeWeapon(Inventory[0]);
+            currentSlot = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeWeapon(Inventory[0]);
+            ChangeWeapon(Inventory[1]);
+            currentSlot = 1;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeWeapon(Inventory[2]);
+            currentSlot = 2;
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {

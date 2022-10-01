@@ -48,13 +48,13 @@ public class GunValues : MonoBehaviour
     public GameObject GGMuzzleFlash;
     public GameObject LightningMuzzleFlash;
     public GameObject GoldenGunModel;
-    public GunClass GoldenGun = new GunClass(10, 1, 10, "GoldenGun", 0.3f, 2, true, false);
+    public GunClass GoldenGun = new GunClass(15, 1, 4, "GoldenGun", 0.6f, 2, true, false);
     
     public GameObject AK47Model;
-    public GunClass AK47 = new GunClass(2, 25, 50, "AK47", 0.1f, 2, false, false);
+    public GunClass AK47 = new GunClass(2, 25, 25, "AK47", 0.1f, 2, false, false);
 
     public GameObject LightningGunModel;
-    public GunClass LightningGun = new GunClass(3, 10, 10, "Lightning", 0.3f, 1, false, true);
+    public GunClass LightningGun = new GunClass(4, 5, 5, "Lightning", 1, 1.5f, false, true);
     private void Start()
     {
         GoldenGun.MuzzleFlash = GGMuzzleFlash;

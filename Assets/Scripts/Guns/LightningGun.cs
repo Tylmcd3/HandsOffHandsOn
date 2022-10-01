@@ -37,12 +37,10 @@ public class LightningGun : MonoBehaviour
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
                 Collider[] enemies;
-                // check area around enemy hit and find closest two enemies
-                // TODO change this check
-                if ((enemies = Physics.OverlapSphere(hit.transform.position, 7, enemyLayer)).Length > 1)
+                // check area around enemy hit and find closest enemies
+                if ((enemies = Physics.OverlapSphere(hit.transform.position, 7, enemyLayer)).Length > 0)
                 {
                     lightningHits.Clear();
-                    // TODO cap enemies hit
                     foreach (Collider c in enemies)
                     {
                         lightningHits.Add(c.transform);
@@ -51,11 +49,7 @@ public class LightningGun : MonoBehaviour
                     hitPoint = hit.transform.position;
                     SpawnLightning(CurrentGunStruct.Damage);
                 }
-                // TODO calc damage correctly
                 hitPoint = hit.transform.position;
-                Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
-                hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>()
-                    .DealDamage(CurrentGunStruct.Damage);
             }
         }
     }
@@ -129,15 +123,5 @@ public class LightningGun : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         enemy.DealDamage(damage);
-    }
-
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < lightningHits.Count; i++)
-        {
-            float colour = (float)i / (float)lightningHits.Count;
-            Gizmos.color = new Color(colour, 0, 0);
-            Gizmos.DrawSphere(lightningHits[i].position, 0.8f);
-        }
     }
 }
