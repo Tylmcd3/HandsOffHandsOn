@@ -38,7 +38,7 @@ namespace GunNameSpace
     }
     public enum GunEnum
     {
-        NoGun, GoldenGun, AK47, LightningGun
+        NoGun, GoldenGun, AK47, LightningGun, LaserGun, BombGun
     }
     
 }
@@ -47,19 +47,30 @@ public class GunValues : MonoBehaviour
     public GameObject AKMuzzleFlash;
     public GameObject GGMuzzleFlash;
     public GameObject LightningMuzzleFlash;
+    public GameObject LaserMuzzleFlash;
+    public GameObject BombMuzzleFlash;
+    
     public GameObject GoldenGunModel;
-    public GunClass GoldenGun = new GunClass(15, 1, 4, "GoldenGun", 0.6f, 2, true, false);
+    public GunClass GoldenGun = new GunClass(15, 2, 2, "GoldenGun", 0.6f, 2, true, false);
     
     public GameObject AK47Model;
     public GunClass AK47 = new GunClass(2, 25, 25, "AK47", 0.1f, 2, false, false);
 
     public GameObject LightningGunModel;
-    public GunClass LightningGun = new GunClass(4, 5, 5, "Lightning", 1, 1.5f, false, true);
+    public GunClass LightningGun = new GunClass(3, 5, 5, "Lightning", 1, 1.5f, false, true);
+    
+    public GameObject LaserGunModel;
+    public GunClass LaserGun = new GunClass(1, 400, 200, "Laser", 0.01f, 2, false, true);
+
+    public GameObject BombGunModel;
+    public GunClass BombGun = new GunClass(6, 5, 5, "Bomb", 1, 1.5f, false, true);
     private void Start()
     {
         GoldenGun.MuzzleFlash = GGMuzzleFlash;
         AK47.MuzzleFlash = AKMuzzleFlash;
         LightningGun.MuzzleFlash = LightningMuzzleFlash;
+        LaserGun.MuzzleFlash = LaserMuzzleFlash;
+        BombGun.MuzzleFlash = BombMuzzleFlash;
     }
     public GunClass SwapGun(GunEnum GunToRemoveEnum, GunClass GunToRemoveStruct, GunEnum Get)
     {
@@ -78,6 +89,14 @@ public class GunValues : MonoBehaviour
                 LightningGun = GunToRemoveStruct;
                 LightningGunModel.SetActive(false);
                 break;
+            case GunEnum.LaserGun:
+                LaserGun = GunToRemoveStruct;
+                LaserGunModel.SetActive(false);
+                break;
+            case GunEnum.BombGun:
+                BombGun = GunToRemoveStruct;
+                BombGunModel.SetActive(false);
+                break;
             case GunEnum.NoGun:
                 break;
         }
@@ -95,6 +114,14 @@ public class GunValues : MonoBehaviour
             case GunEnum.LightningGun:
                 GetGunStruct = LightningGun;
                 LightningGunModel.SetActive(true);
+                break;
+            case GunEnum.LaserGun:
+                GetGunStruct = LaserGun;
+                LaserGunModel.SetActive(true);
+                break;
+            case GunEnum.BombGun:
+                GetGunStruct = BombGun;
+                BombGunModel.SetActive(true);
                 break;
             default:
                 GetGunStruct = null;

@@ -120,6 +120,12 @@ public class Guns : MonoBehaviour
                     case GunEnum.LightningGun:
                         GetComponent<LightningGun>().ShootLightning(CurrentGunStruct, weaponLayer, enemyLayer);
                         break;
+                    case GunEnum.LaserGun:
+                        GetComponent<LaserGun>().ShootLaser(CurrentGunStruct, weaponLayer, GunStore.LaserGunModel.transform);
+                        break;
+                    case GunEnum.BombGun:
+                        GetComponent<BombGun>().ShootBomb(CurrentGunStruct, weaponLayer, enemyLayer);
+                        break;
                 }
             }
             // reload
