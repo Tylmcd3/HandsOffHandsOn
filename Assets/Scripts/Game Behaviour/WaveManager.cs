@@ -92,7 +92,7 @@ public class WaveManager : MonoBehaviour
         if (currentWave == totalWaves)
         {
             // ... 
-            GetComponent<GameStateManager>().EndGame();
+            GetComponent<GameStateManager>().EndGame(true);
             Reset();
             return;
         }

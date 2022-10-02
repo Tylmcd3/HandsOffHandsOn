@@ -64,8 +64,12 @@ public class GunValues : MonoBehaviour
 
     public GameObject BombGunModel;
     public GunClass BombGun = new GunClass(6, 5, 5, "Bomb", 1, 1.5f, false, true);
+
+
+    public List<GunClass> guns;
     private void Start()
     {
+        guns = new List<GunClass>() { GoldenGun, AK47, LightningGun, LaserGun, BombGun };
         GoldenGun.MuzzleFlash = GGMuzzleFlash;
         AK47.MuzzleFlash = AKMuzzleFlash;
         LightningGun.MuzzleFlash = LightningMuzzleFlash;

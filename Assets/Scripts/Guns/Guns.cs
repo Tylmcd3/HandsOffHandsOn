@@ -21,6 +21,9 @@ public class Guns : MonoBehaviour
     private LayerMask weaponLayer;
     private LayerMask enemyLayer;
 
+    // tracks how many guns still have ammo in them
+    public bool outOfAmmo;
+
     // Start is called before the first frame update
 
     void Start()
@@ -51,6 +54,7 @@ public class Guns : MonoBehaviour
     }
     void ChangeToNextGun()
     {
+        // check ammo
         for (int i = 0; i < Inventory.Count; i++)
             if (Inventory[i] != CurrentGun && Inventory[i] != GunEnum.NoGun)
             {
@@ -76,13 +80,36 @@ public class Guns : MonoBehaviour
         }
         else
         {
+            outOfAmmo = CheckAmmo();
             ChangeToNextGun();
         }
+    }
+
+    // returns true if all guns are out of ammo
+    private bool CheckAmmo()
+    {
+        int comp = 0;
+        foreach (GunEnum gun in Inventory)
+        {
+            if (gun != GunEnum.NoGun)
+            {
+                if (GunStore.guns[(int)gun - 1].Clip == 0)
+                {
+                    comp++;
+                }
+            }
+            else
+            {
+                comp++;
+            }
+        }
+        return comp == Inventory.Count;
     }
 
     // Fully reloads weapons clip to clipsize + reserve
     public void FullReload()
     {
+        outOfAmmo = false;
         CurrentGunStruct.Clip = CurrentGunStruct.ClipSize;
         CurrentGunStruct.CurrReserveAmmo = CurrentGunStruct.ReserveAmmoStart;
     }
