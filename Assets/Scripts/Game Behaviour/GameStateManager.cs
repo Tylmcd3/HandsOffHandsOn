@@ -13,6 +13,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endMenu;
 
+    public int weaponsOnGround;
+
     // TODO which should we do for counting enemies?
     // Either have a list of all enemies (more costly)
     // Or just have an int that we increment/decrement (less overhead, less information)
@@ -34,6 +36,25 @@ public class GameStateManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             Pause();
+        }
+    }
+
+    public void AddWeapon()
+    {
+        weaponsOnGround++;
+    }
+
+    public void RemoveWeapon()
+    {
+        weaponsOnGround--;
+    }
+
+    public void ClearWeapons()
+    {
+        GameObject[] weapons = (GameObject.FindGameObjectsWithTag("DroppedWeapon"));
+        foreach (GameObject g in weapons)
+        {
+            Destroy(g);
         }
     }
 

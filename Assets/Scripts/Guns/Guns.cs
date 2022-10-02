@@ -20,11 +20,12 @@ public class Guns : MonoBehaviour
     private Vector3 hitPoint;
     private LayerMask weaponLayer;
     private LayerMask enemyLayer;
+
     // Start is called before the first frame update
 
     void Start()
     {
-        Inventory = new List<GunEnum>(maxGuns) { GunEnum.NoGun };
+        Inventory = new List<GunEnum>(maxGuns);
         // initialize inventory
         for (int i = 0; i < maxGuns; i++)
         {
@@ -51,7 +52,7 @@ public class Guns : MonoBehaviour
     void ChangeToNextGun()
     {
         for (int i = 0; i < Inventory.Count; i++)
-            if (Inventory[i] != CurrentGun)
+            if (Inventory[i] != CurrentGun && Inventory[i] != GunEnum.NoGun)
             {
                 ChangeWeapon(Inventory[i]);
                 break;
@@ -59,7 +60,7 @@ public class Guns : MonoBehaviour
     }
     void Reload()
     {
-        Debug.Log(CurrentGunStruct.CurrReserveAmmo);
+        //Debug.Log(CurrentGunStruct.CurrReserveAmmo);
         if (CurrentGunStruct.CurrReserveAmmo > CurrentGunStruct.ClipSize)
         {
             TimeTillNextFire = CurrentGunStruct.ReloadTime;
@@ -99,14 +100,14 @@ public class Guns : MonoBehaviour
                 {
                     CurrentGunStruct.MuzzleFlash.SetActive(true);
                     CurrentGunStruct.Clip--;
-                    Debug.Log(CurrentGunStruct.Clip);
+                    //Debug.Log(CurrentGunStruct.Clip);
 
                     // visual effect at point hit
 
                     // enemy damage
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+                        //Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                         hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>()
                             .DealDamage(CurrentGunStruct.Damage);
                     }
@@ -169,11 +170,6 @@ public class Guns : MonoBehaviour
            
         }
     }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(hitPoint, 7);
-    }
+
 }
 

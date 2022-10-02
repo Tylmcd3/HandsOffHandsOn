@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PickupWeapon : MonoBehaviour
 {
+    private GameStateManager gsManager;
+    
     private Guns playerGuns;
     private DetectWeapon detect;
 
@@ -16,6 +18,7 @@ public class PickupWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gsManager = GameObject.Find("GameManager").GetComponent<GameStateManager>();
         playerGuns = GetComponent<Guns>();
         detect = GetComponent<DetectWeapon>();
     }
@@ -36,7 +39,6 @@ public class PickupWeapon : MonoBehaviour
             // if theres a weapon to pick up...
             if (detect.selected)
             {
-                Debug.Log("Here");
                 pickedUp = true;
                 // ...
                 GunEnum type = detect.selected.GetComponent<DroppedWeaponValues>().type;
@@ -55,6 +57,8 @@ public class PickupWeapon : MonoBehaviour
                 
                 // Finally destroy the picked up weapon
                 detect.RemoveSelected();
+
+                gsManager.RemoveWeapon();
             }
         }
     }

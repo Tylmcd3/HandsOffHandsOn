@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6542678966507336389}
   - component: {fileID: 6542678966507336388}
   - component: {fileID: 6542678966507336391}
+  - component: {fileID: 1441290146595690993}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -66,4 +67,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameActive: 0
+  pauseMenu: {fileID: 0}
+  endMenu: {fileID: 0}
   enemiesInScene: 0
+--- !u!114 &1441290146595690993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542678966507336390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe75039e360e7564eaff7bb12a1214e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allDroppedWeapons: []

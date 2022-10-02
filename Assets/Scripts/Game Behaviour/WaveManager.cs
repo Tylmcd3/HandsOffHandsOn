@@ -110,6 +110,8 @@ public class WaveManager : MonoBehaviour
     // Advance wave
     public void AdvanceWave()
     {
+        // TODO fix this
+        //GetComponent<GameStateManager>().ClearWeapons();
         // Increment current wave and set wave to active
         currentWave++;
         StartWave();
