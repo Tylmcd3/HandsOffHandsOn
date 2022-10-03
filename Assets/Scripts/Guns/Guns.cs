@@ -20,11 +20,15 @@ public class Guns : MonoBehaviour
     private Vector3 hitPoint;
     private LayerMask weaponLayer;
     private LayerMask enemyLayer;
+
+    // tracks how many guns still have ammo in them
+    public bool outOfAmmo;
+
     // Start is called before the first frame update
 
     void Start()
     {
-        Inventory = new List<GunEnum>(maxGuns) { GunEnum.NoGun };
+        Inventory = new List<GunEnum>(maxGuns);
         // initialize inventory
         for (int i = 0; i < maxGuns; i++)
         {
@@ -50,8 +54,9 @@ public class Guns : MonoBehaviour
     }
     void ChangeToNextGun()
     {
+        // check ammo
         for (int i = 0; i < Inventory.Count; i++)
-            if (Inventory[i] != CurrentGun)
+            if (Inventory[i] != CurrentGun && Inventory[i] != GunEnum.NoGun)
             {
                 ChangeWeapon(Inventory[i]);
                 break;
@@ -59,7 +64,7 @@ public class Guns : MonoBehaviour
     }
     void Reload()
     {
-        Debug.Log(CurrentGunStruct.CurrReserveAmmo);
+        //Debug.Log(CurrentGunStruct.CurrReserveAmmo);
         if (CurrentGunStruct.CurrReserveAmmo > CurrentGunStruct.ClipSize)
         {
             TimeTillNextFire = CurrentGunStruct.ReloadTime;
@@ -75,13 +80,36 @@ public class Guns : MonoBehaviour
         }
         else
         {
+            outOfAmmo = CheckAmmo();
             ChangeToNextGun();
         }
+    }
+
+    // returns true if all guns are out of ammo
+    private bool CheckAmmo()
+    {
+        int comp = 0;
+        foreach (GunEnum gun in Inventory)
+        {
+            if (gun != GunEnum.NoGun)
+            {
+                if (GunStore.guns[(int)gun - 1].Clip == 0)
+                {
+                    comp++;
+                }
+            }
+            else
+            {
+                comp++;
+            }
+        }
+        return comp == Inventory.Count;
     }
 
     // Fully reloads weapons clip to clipsize + reserve
     public void FullReload()
     {
+        outOfAmmo = false;
         CurrentGunStruct.Clip = CurrentGunStruct.ClipSize;
         CurrentGunStruct.CurrReserveAmmo = CurrentGunStruct.ReserveAmmoStart;
     }
@@ -99,14 +127,14 @@ public class Guns : MonoBehaviour
                 {
                     CurrentGunStruct.MuzzleFlash.SetActive(true);
                     CurrentGunStruct.Clip--;
-                    Debug.Log(CurrentGunStruct.Clip);
+                    //Debug.Log(CurrentGunStruct.Clip);
 
                     // visual effect at point hit
 
                     // enemy damage
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+                        //Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
                         hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>()
                             .DealDamage(CurrentGunStruct.Damage);
                     }
@@ -118,6 +146,12 @@ public class Guns : MonoBehaviour
                 {
                     case GunEnum.LightningGun:
                         GetComponent<LightningGun>().ShootLightning(CurrentGunStruct, weaponLayer, enemyLayer);
+                        break;
+                    case GunEnum.LaserGun:
+                        GetComponent<LaserGun>().ShootLaser(CurrentGunStruct, weaponLayer, GunStore.LaserGunModel.transform);
+                        break;
+                    case GunEnum.BombGun:
+                        GetComponent<BombGun>().ShootBomb(CurrentGunStruct, weaponLayer, enemyLayer);
                         break;
                 }
             }
@@ -169,11 +203,6 @@ public class Guns : MonoBehaviour
            
         }
     }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(hitPoint, 7);
-    }
+
 }
 

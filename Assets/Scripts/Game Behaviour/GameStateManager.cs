@@ -13,15 +13,16 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endMenu;
 
-    // TODO which should we do for counting enemies?
-    // Either have a list of all enemies (more costly)
-    // Or just have an int that we increment/decrement (less overhead, less information)
-    //public List<GameObject> enemies; // Global list of all enemies
+    private Guns playerGuns;
+
+    public int weaponsOnGround;
+
     public int enemiesInScene; // Global count of all enemies
     WaveManager waveManager;
     // Start is called before the first frame update
     void Start()
     {
+        playerGuns = GameObject.Find("Player").GetComponent<Guns>();
         enemiesInScene = 0;
         waveManager = GetComponent<WaveManager>();
         StartGame();
@@ -30,10 +31,35 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // lose condition 1
+        // if player is out of ammo and there are no weapon left on the ground
+        if (playerGuns.outOfAmmo && weaponsOnGround == 0)
+        {
+            EndGame(false);
+        }
         // TODO change to escape, T is easier when debugging
         if (Input.GetKeyDown(KeyCode.T))
         {
             Pause();
+        }
+    }
+
+    public void AddWeapon()
+    {
+        weaponsOnGround++;
+    }
+
+    public void RemoveWeapon()
+    {
+        weaponsOnGround--;
+    }
+
+    public void ClearWeapons()
+    {
+        GameObject[] weapons = (GameObject.FindGameObjectsWithTag("DroppedWeapon"));
+        foreach (GameObject g in weapons)
+        {
+            Destroy(g);
         }
     }
 
@@ -83,10 +109,10 @@ public class GameStateManager : MonoBehaviour
         waveManager.StartWave(1);
     }
 
-    public void EndGame()
+    public void EndGame(bool win)
     {
         StopGame();
-        // Check if player has won or lost and handle cleanup
+        // TODO handle win/loss based on bool param
         // Load endgameMenu etc
         endMenu.SetActive(true);
     }

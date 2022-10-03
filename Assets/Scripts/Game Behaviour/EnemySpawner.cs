@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -16,20 +17,26 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemies; // List of possible enemy prefabs
     public float[] weights; // Weight charts for enemy spawns
 
+    [Range(0, 1.0f)] [SerializeField] private float chanceToDropWeapon = 0.6f;
+
     // Timer for enemy spawns, currently only spawns one enemy every interval
     public float timeToSpawn = 1;
-    float timer;
+    private float timer;
 
-    GameStateManager gsManager;
-    WaveManager waveManager;
+    private GameStateManager gsManager;
+    private WaveManager waveManager;
+    
+    private List<GameObject> weaponsList;
 
     public weightChart[] weightChart;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gameManager = GameObject.Find("GameManager");
         // Find global game manager objects and assign components
-        waveManager = GameObject.Find("GameManager").GetComponent<WaveManager>();
-        gsManager = GameObject.Find("GameManager").GetComponent<GameStateManager>();
+        waveManager = gameManager.GetComponent<WaveManager>();
+        gsManager = gameManager.GetComponent<GameStateManager>();
+        weaponsList = gameManager.GetComponent<EnemyManager>().allDroppedWeapons;
 
         timer = 0;
     }
@@ -37,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Only spawn enemies if a wave is active & game active 
+        // // Only spawn enemies if a wave is active & game active 
         if (gsManager.gameActive && waveManager.waveActive)
         {
             // only want to spawn if wavemanager.totalkills - enemiesInScene > numberSpawned
@@ -59,12 +66,28 @@ public class EnemySpawner : MonoBehaviour
             // Reset timer while wave/game is inactive
             timer = 0;
         }
+        
+        // TEMP DEBUG
+        // timer += Time.deltaTime;
+        // if (timer >= timeToSpawn)
+        // {
+        //     // Reset timer
+        //     timer = 0;
+        //     SpawnEnemy();
+        // }  
     }
 
     void SpawnEnemy()
     {
         // Select a random enemy from enemies list based on weights
         float weight = Random.Range(0.0f, 1.0f);
+        
+        // Random weapon (evenly distributed)
+        int weapon = Random.Range(0, weaponsList.Count);
+        
+        // now need chance to drop weapon, not always true! (currently 60% chance to drop
+        bool dropWeapon = Random.Range(0, 1.0f) < chanceToDropWeapon;
+        
         //Debug.Log(weight);
         int toSpawn = 0;
 
@@ -81,9 +104,8 @@ public class EnemySpawner : MonoBehaviour
 
                 // Spawning logic here
                 GameObject enemy = Instantiate(enemies[toSpawn], transform.position, transform.rotation);
-
-                // For demo...
-                //enemy.GetComponent<Rigidbody>().AddForce(new Vector3(500, 0, 300));
+                
+                enemy.GetComponent<EnemyDropWeapon>().AssignWeaponToDrop(dropWeapon, weaponsList[weapon]);
 
                 // Finally increment global enemy count
                 gsManager.AddEnemy();
@@ -96,6 +118,6 @@ public class EnemySpawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(transform.position, 0.15f);
+        Gizmos.DrawSphere(transform.position, 0.3f);
     }
 }

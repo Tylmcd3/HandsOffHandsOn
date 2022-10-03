@@ -84,6 +84,11 @@ public class DetectWeapon : MonoBehaviour
         }
     }
 
+    public void ClearList()
+    {
+        weapons.Clear();
+    }
+
     public void RemoveSelected()
     {
         // TODO fix this
