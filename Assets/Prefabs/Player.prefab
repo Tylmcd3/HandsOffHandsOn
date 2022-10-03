@@ -5280,6 +5280,8 @@ GameObject:
   - component: {fileID: 2043294360468493459}
   - component: {fileID: 2043294360468493460}
   - component: {fileID: 2043294360468493461}
+  - component: {fileID: 559376200618641939}
+  - component: {fileID: 6741046616687050012}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5457,8 +5459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxGuns: 3
   Inventory: 
-  StartingWeapon: 2
+  StartingWeapon: 5
   currentSlot: 0
+  outOfAmmo: 0
 --- !u!114 &2043294360468493457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5474,9 +5477,13 @@ MonoBehaviour:
   AKMuzzleFlash: {fileID: 2043294361571156065}
   GGMuzzleFlash: {fileID: 2043294361761638657}
   LightningMuzzleFlash: {fileID: 2043294361001511896}
+  LaserMuzzleFlash: {fileID: 2043294361001511896}
+  BombMuzzleFlash: {fileID: 2043294361001511896}
   GoldenGunModel: {fileID: 5460694027478466685}
   AK47Model: {fileID: 6224473448850245159}
   LightningGunModel: {fileID: 83818280929693035}
+  LaserGunModel: {fileID: 83818280929693035}
+  BombGunModel: {fileID: 83818280929693035}
 --- !u!114 &2043294360468493458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5535,6 +5542,36 @@ MonoBehaviour:
   lightning: {fileID: 425429654073489185, guid: d2d254e27abe7f348b6bc9e39b3739d9, type: 3}
   shootPoint: {fileID: 748187859232479185}
   lightningHits: []
+--- !u!114 &559376200618641939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043294360468493463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d056f1be6653c0842b2b81e004612cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 609629290705355179, guid: 15e0ddd66e5235143a3be8850bc9d433, type: 3}
+  detonateTime: 2
+  speed: 6
+  upward: 0.6
+--- !u!114 &6741046616687050012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043294360468493463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239b7a0584cf3d646b412d7285fbf9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 425429654073489185, guid: e4a23451dde0fd14b971b3cb3d4f68b4, type: 3}
+  damageCount: 25
 --- !u!1 &2043294360475668251
 GameObject:
   m_ObjectHideFlags: 0
