@@ -11350,7 +11350,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1441290146595690993, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
       propertyPath: allDroppedWeapons.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1441290146595690993, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
       propertyPath: allDroppedWeapons.Array.data[0]
@@ -11364,6 +11364,14 @@ PrefabInstance:
       propertyPath: allDroppedWeapons.Array.data[2]
       value: 
       objectReference: {fileID: 2022020525554770337, guid: 312c3906b64c59343a12ca1eff336bfb, type: 3}
+    - target: {fileID: 1441290146595690993, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
+      propertyPath: allDroppedWeapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 2022020525554770337, guid: 5aa5d7703336cbc4d8560675de99b915, type: 3}
+    - target: {fileID: 1441290146595690993, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
+      propertyPath: allDroppedWeapons.Array.data[4]
+      value: 
+      objectReference: {fileID: 2022020525554770337, guid: dfbe18e90d9a5834f8f0be4d88c7a332, type: 3}
     - target: {fileID: 6542678966507336388, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -11757,7 +11765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12219,7 +12227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14335,7 +14343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 478336028895954907, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
       propertyPath: m_LocalPosition.x
