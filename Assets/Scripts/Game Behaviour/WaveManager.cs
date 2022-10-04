@@ -88,14 +88,14 @@ public class WaveManager : MonoBehaviour
         // Don't continue until enemies == 0
         // only need to do this if doing time based
 
-        // Finally, if currentWave == totalWaves, initiate win state (just ended last wave)
-        if (currentWave == totalWaves)
-        {
-            // ... 
-            GetComponent<GameStateManager>().EndGame(true);
-            Reset();
-            return;
-        }
+        // Finally, if currentWave == totalWaves, initiate win state (just ended last wave) No
+        //if (currentWave == totalWaves)
+        //{
+        //    // ... 
+        //    GetComponent<GameStateManager>().EndGame(true);
+        //    Reset();
+        //    return;
+        //}
         // Otherwise start the break to move into next wave
         StartCoroutine(Break());
     }
