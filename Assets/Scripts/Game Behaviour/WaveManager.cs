@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour
 
     // Used if doing enemy spawn based waves
     public int currentKills;
-    public int totalKills = 10; // Default 10 enemies
+    public int EnemiesToSpawn = 5; // Default 10 enemies
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class WaveManager : MonoBehaviour
 
         // Enemy spawn counter for enemy based waves
         // TODO Need some external method to increment currentKills
-        if (currentKills >= totalKills)
+        if (currentKills >= EnemiesToSpawn)
         {
             waveActive = false;
             // Reset kill count
@@ -114,6 +114,7 @@ public class WaveManager : MonoBehaviour
         //GetComponent<GameStateManager>().ClearWeapons();
         // Increment current wave and set wave to active
         currentWave++;
+        EnemiesToSpawn = EnemiesToSpawn + 5;
         StartWave();
     }
 }
