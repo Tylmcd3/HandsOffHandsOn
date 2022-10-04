@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7c8103fc914b042a44ee5d3a86e965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDamage: 1
   attackDelay: 0.09
   trailRenderer: {fileID: 6939641838012884675, guid: 54ef4ae01bec83944b4c0476022f9db3, type: 3}
 --- !u!114 &3675788415479772462

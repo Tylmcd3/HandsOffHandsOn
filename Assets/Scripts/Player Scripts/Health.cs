@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -22,6 +23,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int Amount)
     {
         CurrHealth -= Amount;
+        Debug.Log(CurrHealth);
         if (CurrHealth <= 0) Death();
     }
     //Left this as well cos im not sure if we will have health regen
@@ -32,6 +34,7 @@ public class Health : MonoBehaviour
     //Unsure what we are going to do on death so im leaving this
     public void Death()
     {
-
+        GameStateManager gameState = GameObject.Find("/GameManager").GetComponent<GameStateManager>();
+        gameState.EndGame();
     }
 }

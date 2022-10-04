@@ -12044,6 +12044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1952d2f0ad03f8042a97e1ef57fc1d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensityCap: 0.25
   volume: {fileID: 1162337871}
   time: 3
 --- !u!114 &1300777454
@@ -12073,8 +12074,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AKMuzzleFlash: {fileID: 1671155197}
   GGMuzzleFlash: {fileID: 627417402}
+  LightningMuzzleFlash: {fileID: 0}
   GoldenGunModel: {fileID: 274603770}
   AK47Model: {fileID: 1549028686}
+  LightningGunModel: {fileID: 0}
 --- !u!114 &1300777456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12087,7 +12090,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40c4f65f5eec594790c9a5f1a605cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGuns: 3
+  Inventory: 
   StartingWeapon: 1
+  currentSlot: 0
 --- !u!114 &1300777457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12532,7 +12538,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65330
+  m_Name: pb_Mesh101176
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -14500,7 +14506,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14614
+  m_Name: pb_Mesh100934
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -14803,8 +14809,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AKMuzzleFlash: {fileID: 0}
   GGMuzzleFlash: {fileID: 0}
+  LightningMuzzleFlash: {fileID: 0}
   GoldenGunModel: {fileID: 0}
   AK47Model: {fileID: 0}
+  LightningGunModel: {fileID: 0}
 --- !u!4 &1965508049
 Transform:
   m_ObjectHideFlags: 0
@@ -15061,54 +15069,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1533484601}
     m_Modifications:
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 177.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184395885320098, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -311.46503
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 222.93001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396028898073, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -111.465004
-      objectReference: {fileID: 0}
     - target: {fileID: 4091184396521069272, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15196,10 +15156,6 @@ PrefabInstance:
     - target: {fileID: 4091184396521069273, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
       propertyPath: m_Name
       value: EndMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091184396521069273, guid: 82c83bd529f692743ab18a502ecfb931, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

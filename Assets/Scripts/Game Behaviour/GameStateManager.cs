@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Q3Movement;
+using TMPro;
 using UnityEngine;
 
 // Manages game state such as pausing, winning, losing
@@ -12,13 +13,14 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endMenu;
-
+    int totalGameKills; //Just used for score keeping/ end game screen
     private Guns playerGuns;
-
     public int weaponsOnGround;
+
 
     public int enemiesInScene; // Global count of all enemies
     WaveManager waveManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +74,7 @@ public class GameStateManager : MonoBehaviour
     public void RemoveEnemy()
     {
         waveManager.currentKills++;
+        totalGameKills++;
         // ...
         enemiesInScene--;
     }
@@ -112,8 +115,12 @@ public class GameStateManager : MonoBehaviour
     public void EndGame(bool win)
     {
         StopGame();
-        // TODO handle win/loss based on bool param
+
+        // Check if player has won or lost and handle cleanup
         // Load endgameMenu etc
         endMenu.SetActive(true);
+        GameObject.Find("/Canvas/EndMenu/Buttons/Title").GetComponent<TextMeshProUGUI>().text = "You Have Died!\nYou Survived till round " + waveManager.currentWave + "\nand killed "+totalGameKills+ " Enemies";
+
+       
     }
 }

@@ -8,6 +8,7 @@ public class RangedEnemyAttack : MonoBehaviour
 {
     private Vector3 hitPoint;
     private Vector3 direction;
+    public int enemyDamage;
 
     [SerializeField] private float attackDelay = 0.075f;
     [SerializeField] private TrailRenderer trailRenderer;
@@ -36,7 +37,7 @@ public class RangedEnemyAttack : MonoBehaviour
             if (hit.transform.gameObject.CompareTag("Player"))
             {
                 // TODO REMOVE THIS 
-                hit.transform.gameObject.GetComponent<PlayerDamageFlash>().FlashScreen();
+                hit.transform.gameObject.GetComponent<Health>().TakeDamage(enemyDamage);
             }
         }
     }
