@@ -24,6 +24,9 @@ public class Guns : MonoBehaviour
     // tracks how many guns still have ammo in them
     public bool outOfAmmo;
 
+    // Very lazy
+    public int currentAmmo;
+    public int currentMaxAmmo;
     // Start is called before the first frame update
 
     void Start()
@@ -43,14 +46,25 @@ public class Guns : MonoBehaviour
 
         CurrentGun = StartingWeapon;
         CurrentGunStruct = GunStore.SwapGun(GunEnum.NoGun, null, StartingWeapon);
+        
+        currentAmmo = CurrentGunStruct.Clip;
+        currentMaxAmmo = CurrentGunStruct.ClipSize;
     }
     public void ChangeWeapon(GunEnum weaponToChange)
     {
         // disable muzzle
         CurrentGunStruct.MuzzleFlash.SetActive(false);
-
+        for (int i = 0; i < Inventory.Count; i++)
+        {
+            if (Inventory[i] == weaponToChange)
+            {
+                currentSlot = i;
+                break;
+            }
+        }
         CurrentGunStruct  = GunStore.SwapGun(CurrentGun, CurrentGunStruct, weaponToChange);
         CurrentGun = weaponToChange;
+        currentMaxAmmo = CurrentGunStruct.ClipSize;
     }
     void ChangeToNextGun()
     {
@@ -58,6 +72,7 @@ public class Guns : MonoBehaviour
         for (int i = 0; i < Inventory.Count; i++)
             if (Inventory[i] != CurrentGun && Inventory[i] != GunEnum.NoGun)
             {
+                currentSlot = i;
                 ChangeWeapon(Inventory[i]);
                 break;
             }
@@ -202,6 +217,8 @@ public class Guns : MonoBehaviour
             }
            
         }
+
+        currentAmmo = CurrentGunStruct.Clip;
     }
 
 }
