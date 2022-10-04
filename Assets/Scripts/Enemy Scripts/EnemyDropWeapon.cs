@@ -17,7 +17,7 @@ public class EnemyDropWeapon : MonoBehaviour
     }
     public void DropWeapon()
     {
-        if (dropWeapon && gsManager.weaponsOnGround < 8)
+        if (dropWeapon && gsManager.weaponsOnGround < 4)
         {
             Rigidbody rb = Instantiate(weaponToDrop, transform.position, Quaternion.Euler(0, 0, 90)).GetComponent<Rigidbody>();
             //GameObject weapon = Instantiate(weaponToDrop, transform.position, Quaternion.Euler(0, 0, 90));

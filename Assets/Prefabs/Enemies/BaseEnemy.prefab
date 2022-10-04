@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f054caf07fb8f04c964180e205f7bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 5
+  baseHealth: 10
   currHealth: 0
 --- !u!114 &6325523958472290690
 MonoBehaviour:
@@ -215,7 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attackTime: 2
+  ChasingEnemy: 0
+  attackTime: 1.5
   attackRange: 8
   targetInRange: 0
 --- !u!114 &-373131651482940160

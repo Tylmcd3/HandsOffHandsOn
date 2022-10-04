@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject endMenu;
+    [SerializeField] private GameObject hud;
     int totalGameKills; //Just used for score keeping/ end game screen
     private Guns playerGuns;
     public int weaponsOnGround;
@@ -84,6 +85,7 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Paused!");
         // Disable most game logic
         gameActive = !gameActive;
+        hud.SetActive(gameActive);
         // Set time scale accordingly
         // Disables movement and physics checks
         Time.timeScale = Convert.ToInt32(gameActive);
@@ -100,6 +102,7 @@ public class GameStateManager : MonoBehaviour
         StopGame();
         // Load pause UI
         pauseMenu.SetActive(!gameActive);
+        hud.SetActive(gameActive);
         // ...
     }
 
@@ -109,6 +112,7 @@ public class GameStateManager : MonoBehaviour
         gameActive = true;
         Time.timeScale = 1;
         GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = true;
+        hud.SetActive(true);
         waveManager.StartWave(1);
     }
     //Removed the book, we only end the game when they die
@@ -119,8 +123,6 @@ public class GameStateManager : MonoBehaviour
         // Check if player has won or lost and handle cleanup
         // Load endgameMenu etc
         endMenu.SetActive(true);
-        GameObject.Find("/Canvas/EndMenu/Buttons/Title").GetComponent<TextMeshProUGUI>().text = "You Have Died!\nYou Survived till round " + waveManager.currentWave + "\nand killed "+totalGameKills+ " Enemies";
-
-       
+        GameObject.Find("/Canvas/EndMenu/EndText").GetComponent<TextMeshProUGUI>().text = "You Survived until wave " + waveManager.currentWave + "\nYou killed "+totalGameKills+ " Enemies";
     }
 }

@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         CurrHealth = MaxHealth;
-        TimeOfLastHit = Time.time;
+        TimeOfLastHit = RegenWaitTime;
 
         LastRegen = Time.time;
     }
@@ -49,8 +49,9 @@ public class Health : MonoBehaviour
     {
         if(LastRegen <= 0)
         {
-            CurrHealth++;
-            LastRegen = 1;
+            // 2 hp per tick
+            CurrHealth+= (CurrHealth + 2 <= MaxHealth)? 2 : MaxHealth - CurrHealth;
+            LastRegen = 0.8f;
             Debug.Log("CurrHealth is " + CurrHealth);
         }
             
