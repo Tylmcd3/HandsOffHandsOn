@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3712452328442843248
 MonoBehaviour:
@@ -46,6 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 478336028895954919, guid: c9e1b0a33db7f2b4891269e2cdf23d4e, type: 3}
+  - {fileID: 478336028895954919, guid: bced916977402034ca93e0585429f861, type: 3}
   weights:
   - 1
+  - 1
+  chanceToDropWeapon: 0.6
   timeToSpawn: 1
+  weightChart: []

@@ -193,19 +193,28 @@ public class Guns : MonoBehaviour
         TimeTillNextFire -= Time.deltaTime; 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeWeapon(Inventory[0]);
-            currentSlot = 0;
+            if (Inventory[0] != GunEnum.NoGun)
+            {
+                ChangeWeapon(Inventory[0]);
+                currentSlot = 0;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeWeapon(Inventory[1]);
-            currentSlot = 1;
+            if (Inventory[1] != GunEnum.NoGun)
+            {
+                ChangeWeapon(Inventory[1]);
+                currentSlot = 1;
+            }
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeWeapon(Inventory[2]);
-            currentSlot = 2;
+            if (Inventory[2] != GunEnum.NoGun)
+            {
+                ChangeWeapon(Inventory[2]);
+                currentSlot = 2;
+            }
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
