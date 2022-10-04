@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int Amount)
     {
+        GetComponent<PlayerDamageFlash>().FlashScreen();
         CurrHealth -= Amount;
         TimeOfLastHit = Time.time;
         Debug.Log(CurrHealth);
