@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         if (gsManager.gameActive && waveManager.waveActive)
         {
             // only want to spawn if wavemanager.totalkills - enemiesInScene > numberSpawned
-            if ((waveManager.totalKills - gsManager.enemiesInScene - waveManager.currentKills) >= 1)
+            if ((waveManager.EnemiesToSpawn - gsManager.enemiesInScene - waveManager.currentKills) >= 1)
             {
                 // TODO this should probably be switched to coroutines so that we can do multiple per interval
                 // Also only increment timer if need be

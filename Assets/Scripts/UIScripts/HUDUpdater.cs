@@ -54,7 +54,7 @@ public class HUDUpdater : MonoBehaviour
     void Update()
     {
         waveCount.text = waveText + waveManager.currentWave.ToString();
-        enemyCount.text = (waveManager.waveActive)? (waveManager.totalKills - waveManager.currentKills).ToString() + enemyText : "";
+        enemyCount.text = (waveManager.waveActive)? (waveManager.EnemiesToSpawn - waveManager.currentKills).ToString() + enemyText : "";
         health.value = playerHealth.CurrHealth;
         ammo.maxValue = playerGuns.currentMaxAmmo;
         ammo.value = playerGuns.currentAmmo;

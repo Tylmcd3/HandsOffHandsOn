@@ -20,7 +20,7 @@ public class DebugText : MonoBehaviour
         currentWave.text = "Wave: " + waveManager.currentWave.ToString();
         waveTimer.text = "Time: " + waveManager.currentTime.ToString("0.00");
         breakDebug.text = "In Break: " + (!waveManager.waveActive).ToString();
-        enemies1Debug.text = waveManager.currentKills + " / " + waveManager.totalKills + " kills";
+        enemies1Debug.text = waveManager.currentKills + " / " + waveManager.EnemiesToSpawn + " kills";
         enemyDebug.text = "Enemies: " + gsManager.enemiesInScene;
     }
 }

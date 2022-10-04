@@ -11,8 +11,8 @@ public class Health : MonoBehaviour
     public float RegenWaitTime;
     //How long it would take to regen from 0 - maxHealth
     public float RegenDuration;
-    float TimeOfLastHit;
-    float LastRegen;
+    float TimeOfLastHit = 0;
+    float LastRegen = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,11 @@ public class Health : MonoBehaviour
     }
     void Update()
     {
-        if (Time.time - TimeOfLastHit > RegenWaitTime && CurrHealth < MaxHealth)
+        if(TimeOfLastHit > 0)
+            TimeOfLastHit -= Time.deltaTime;
+        if(LastRegen >= 0)
+            LastRegen -= Time.deltaTime;
+        if (TimeOfLastHit <= 0 && CurrHealth < MaxHealth)
             RegenHealth();
     }
 
@@ -38,17 +42,17 @@ public class Health : MonoBehaviour
     {
         GetComponent<PlayerDamageFlash>().FlashScreen();
         CurrHealth -= Amount;
-        TimeOfLastHit = Time.time;
+        TimeOfLastHit = RegenWaitTime;
         Debug.Log(CurrHealth);
         if (CurrHealth <= 0) Death();
     }
     //Left this as well cos im not sure if we will have health regen
     public void RegenHealth()
     {
-        if(LastRegen +1 <Time.time)
+        if(LastRegen <= 0)
         {
             CurrHealth++;
-            LastRegen++;
+            LastRegen = 1;
             Debug.Log("CurrHealth is " + CurrHealth);
         }
             
