@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1507399378}
   - component: {fileID: 1507399381}
   - component: {fileID: 1507399380}
-  - component: {fileID: 1507399379}
+  - component: {fileID: 1571680238}
   m_Layer: 7
   m_Name: EnemyMesh
   m_TagString: Enemy
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507399377}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -1861686224335268379, guid: 153608e13b3db5545b4c3a91b6378bcf, type: 3}
 --- !u!23 &1507399380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 179850570637563746, guid: 153608e13b3db5545b4c3a91b6378bcf, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1507399379
-CapsuleCollider:
+--- !u!65 &1571680238
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,10 +94,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.537314, y: 2.14143, z: 2.306028}
+  m_Center: {x: -0.07517904, y: 1.046777, z: -0.00020205975}
 --- !u!1 &478336028895954919
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +135,7 @@ Transform:
   m_Children:
   - {fileID: 1507399378}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &478336028895954906
 Rigidbody:
@@ -152,7 +151,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 94
   m_CollisionDetection: 1
 --- !u!195 &172120635
 NavMeshAgent:
@@ -173,7 +172,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &172120642
@@ -231,7 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fddc492648a3154a8ec7fd7a148b379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColour: {r: 1, g: 0.33395344, b: 0.23921567, a: 0.18431373}
+  flashColour: {r: 1, g: 0.24415661, b: 0.13679248, a: 0.5882353}
+  flashMaterial: {fileID: 2100000, guid: 4d0e17dc48e3aef499e835c388b5f72b, type: 2}
   flashTime: 0.2
 --- !u!114 &6467084534291610408
 MonoBehaviour:
