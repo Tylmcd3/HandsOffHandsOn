@@ -35,10 +35,10 @@ public class GameStateManager : MonoBehaviour
     {
         // lose condition 1
         // if player is out of ammo and there are no weapon left on the ground
-        if (playerGuns.outOfAmmo && weaponsOnGround == 0)
-        {
-            EndGame(false);
-        }
+        //if (playerGuns.outOfAmmo && weaponsOnGround == 0)
+        //{
+        //    EndGame(false);
+        //}
         // TODO change to escape, T is easier when debugging
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -111,8 +111,8 @@ public class GameStateManager : MonoBehaviour
         GameObject.Find("Player").GetComponent<Q3PlayerController>().enabled = true;
         waveManager.StartWave(1);
     }
-
-    public void EndGame(bool win)
+    //Removed the book, we only end the game when they die
+    public void EndGame()
     {
         StopGame();
 
