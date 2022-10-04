@@ -23,7 +23,7 @@ public class EnemyDropWeapon : MonoBehaviour
             //GameObject weapon = Instantiate(weaponToDrop, transform.position, Quaternion.Euler(0, 0, 90));
             // give it a bit of force (and a bit of spin)
             // TODO make this spin more exciting
-            rb.AddForce(0, 100, 0);
+            rb.AddForce(0, 150, 0);
             rb.AddTorque(50, 0, 200);
             
             gsManager.AddWeapon();
