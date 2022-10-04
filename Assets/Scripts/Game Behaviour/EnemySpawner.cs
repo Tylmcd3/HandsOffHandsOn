@@ -79,9 +79,11 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        EnemyDropWeapon DropWeaponScript;
         // Select a random enemy from enemies list based on weights
         float weight = Random.Range(0.0f, 1.0f);
-        
+        int EnemyToSpawn = Random.Range(0, enemies.Length);
+
         // Random weapon (evenly distributed)
         int weapon = Random.Range(0, weaponsList.Count);
         
@@ -90,17 +92,17 @@ public class EnemySpawner : MonoBehaviour
         
         //Debug.Log(weight);
         int toSpawn = 0;
-
-        for (int i = 0; i < weights.Length; i++)
-        {
-            if (weight > weights[i])
-            {
-                weight -= weights[i];
-            }
-            else
-            {
+        //Commented this out just for setting up, might leave like this just so its a random spawn
+        //for (int i = 0; i < weights.Length; i++)
+       // {
+            //if (weight > weights[i])
+            //{
+            //    weight -= weights[i];
+            //}
+            //else
+            //{
                 // Spawn this enemy
-                toSpawn = i;
+                toSpawn = EnemyToSpawn;
 
                 // Spawning logic here
                 GameObject enemy = Instantiate(enemies[toSpawn], transform.position, transform.rotation);
@@ -109,8 +111,8 @@ public class EnemySpawner : MonoBehaviour
 
                 // Finally increment global enemy count
                 gsManager.AddEnemy();
-            }
-        }
+            //}
+        //}
 
     }
 

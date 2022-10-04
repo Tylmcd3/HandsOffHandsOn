@@ -14,7 +14,9 @@ public class RangedEnemyNavigation : MonoBehaviour
     [SerializeField]
     private Transform target;
     private NavMeshAgent enemy;
-    private RangedEnemyAttack attackScript;
+    private RangedEnemyAttack RangedAttackScript;
+    private EnemyMeleeAttack ChaseAttackScript;
+    public bool ChasingEnemy = false;
         
     // Attack logic
     [SerializeField] private float attackTime = 1;
@@ -34,7 +36,10 @@ public class RangedEnemyNavigation : MonoBehaviour
         if (!target) target = transform; // just in case
         
         enemy = GetComponent<NavMeshAgent>();
-        attackScript = GetComponent<RangedEnemyAttack>();
+        if(ChasingEnemy)
+            ChaseAttackScript = GetComponent<EnemyMeleeAttack>();
+        else
+            RangedAttackScript = GetComponent<RangedEnemyAttack>();
     }
 
     // Update is called once per frame
@@ -43,7 +48,11 @@ public class RangedEnemyNavigation : MonoBehaviour
         targetInRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
         
         if(!targetInRange) Chase();
-        if (targetInRange) Attack();
+        if (targetInRange)
+            if (ChasingEnemy)
+                AttackChase();
+            else
+                AttackRanged();
 
     }
     
@@ -55,7 +64,7 @@ public class RangedEnemyNavigation : MonoBehaviour
     }
     
     // attack target
-    void Attack()
+    void AttackRanged()
     {
         // stop enemy in place
         enemy.SetDestination(transform.position);
@@ -65,7 +74,19 @@ public class RangedEnemyNavigation : MonoBehaviour
         if (!attacked)
         {
             // Attack logic
-            attackScript.RangedAttack(target.position);
+            RangedAttackScript.RangedAttack(target.position);
+            // ...
+            attacked = true;
+            Invoke(nameof(ResetAttack), attackTime);
+        }
+    }
+    void AttackChase()
+    {
+        // attack from range
+        if (!attacked)
+        {
+            // Attack logic
+            ChaseAttackScript.ChaseAttack();
             // ...
             attacked = true;
             Invoke(nameof(ResetAttack), attackTime);

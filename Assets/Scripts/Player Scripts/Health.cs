@@ -9,8 +9,6 @@ public class Health : MonoBehaviour
     public int CurrHealth;
     //How long after a hit will the player regen
     public float RegenWaitTime;
-    //How long it would take to regen from 0 - maxHealth
-    public float RegenDuration;
     float TimeOfLastHit = 0;
     float LastRegen = 0;
     // Start is called before the first frame update
