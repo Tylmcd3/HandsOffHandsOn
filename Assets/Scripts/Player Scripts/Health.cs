@@ -35,6 +35,6 @@ public class Health : MonoBehaviour
     public void Death()
     {
         GameStateManager gameState = GameObject.Find("/GameManager").GetComponent<GameStateManager>();
-        gameState.EndGame();
+        gameState.EndGame(false);
     }
 }
