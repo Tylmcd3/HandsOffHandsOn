@@ -14355,6 +14355,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_Gravity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_Friction
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_AirSettings.MaxSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_GroundSettings.MaxSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_MouseLook.m_XSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_MouseLook.m_YSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043294360468493455, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: m_GroundSettings.Acceleration
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2043294360468493456, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
       propertyPath: RegenWaitTime
       value: 5
@@ -14363,6 +14391,10 @@ PrefabInstance:
       propertyPath: volume
       value: 
       objectReference: {fileID: 1530575740}
+    - target: {fileID: 2043294360468493462, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
+      propertyPath: StartingWeapon
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2043294360468493463, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
       propertyPath: m_Name
       value: Player
