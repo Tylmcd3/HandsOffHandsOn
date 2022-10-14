@@ -12,7 +12,7 @@ public class BombGun : MonoBehaviour
     [SerializeField] private float detonateTime = 0.8f;
     
     [SerializeField] private float speed = 8;
-    [SerializeField] private float upward = 0.8f;
+    [SerializeField] private float upward = 0.7f;
 
     public void ShootBomb(GunClass CurrentGunStruct, LayerMask weaponLayer, LayerMask enemyLayer)
     {

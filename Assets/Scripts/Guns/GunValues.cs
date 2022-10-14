@@ -57,13 +57,13 @@ public class GunValues : MonoBehaviour
     public GunClass AK47 = new GunClass(2, 15, 15, "AK47", 0.1f, 2, false, false);
 
     public GameObject LightningGunModel;
-    public GunClass LightningGun = new GunClass(5, 5, 5, "Lightning", 1, 1.5f, false, true);
+    public GunClass LightningGun = new GunClass(6, 5, 5, "Lightning", 1, 1.5f, false, true);
     
     public GameObject LaserGunModel;
-    public GunClass LaserGun = new GunClass(1, 400, 200, "Laser", 0.01f, 2, false, true);
+    public GunClass LaserGun = new GunClass(2, 400, 200, "Laser", 0.01f, 2, false, true);
 
     public GameObject BombGunModel;
-    public GunClass BombGun = new GunClass(8, 5, 5, "Bomb", 1, 1.5f, false, true);
+    public GunClass BombGun = new GunClass(9, 5, 5, "Bomb", 1, 1.5f, false, true);
 
 
     public List<GunClass> guns;
