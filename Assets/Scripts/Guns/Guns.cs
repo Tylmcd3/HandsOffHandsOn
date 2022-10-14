@@ -190,6 +190,78 @@ public class Guns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // mouse scrolling
+        // VERY LAZY NO JUDGE AM VERY TIRED
+        int mouseScroll = (int)Input.mouseScrollDelta.y;
+
+        if (mouseScroll != 0)
+        {
+            if (currentSlot == 0)
+            {
+                if (mouseScroll <= -1)
+                {
+                    if (Inventory[2] != GunEnum.NoGun)
+                    {
+                        currentSlot = 2;
+                        ChangeWeapon(Inventory[2]);
+                    }
+                    else if (Inventory[1] != GunEnum.NoGun)
+                    {
+                        currentSlot = 1;
+                        ChangeWeapon(Inventory[1]);
+                    }
+                }
+
+                if (mouseScroll >= 1 && Inventory[1] != GunEnum.NoGun)
+                {
+                    currentSlot = 1;
+                    ChangeWeapon(Inventory[1]);
+                }
+
+                mouseScroll = 0;
+            }
+            else if (currentSlot == 1)
+            {
+                if (mouseScroll <= -1)
+                {
+                    currentSlot = 0;
+                    ChangeWeapon(Inventory[0]);
+                }
+
+                if (mouseScroll >= 1)
+                {
+                    if (Inventory[2] != GunEnum.NoGun)
+                    {
+                        currentSlot = 2;
+                        ChangeWeapon(Inventory[2]);
+                    }
+                    else
+                    {
+                        currentSlot = 0;
+                        ChangeWeapon(Inventory[0]);
+                    }
+                }
+
+                mouseScroll = 0;
+            }
+            else if (currentSlot == 2)
+            {
+                if (mouseScroll <= -1)
+                {
+                    currentSlot = 1;
+                    ChangeWeapon(Inventory[1]);
+                }
+                
+                if (mouseScroll >= 1)
+                {
+                    currentSlot = 0;
+                    ChangeWeapon(Inventory[0]);
+                }
+
+                mouseScroll = 0;
+            }
+        }
+            
         TimeTillNextFire -= Time.deltaTime; 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

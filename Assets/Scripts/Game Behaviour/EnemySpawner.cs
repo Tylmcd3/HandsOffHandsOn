@@ -79,7 +79,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        EnemyDropWeapon DropWeaponScript;
         // Select a random enemy from enemies list based on weights
         float weight = Random.Range(0.0f, 1.0f);
         int EnemyToSpawn = Random.Range(0, enemies.Length);

@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public int totalWaves = 5; // Default 5 waves
     public bool waveActive = false;
     public int currentWave;
+    public bool paused = false;
 
     // Used if doing time based waves
     public float currentTime;
@@ -46,7 +47,6 @@ public class WaveManager : MonoBehaviour
         // }
 
         // Enemy spawn counter for enemy based waves
-        // TODO Need some external method to increment currentKills
         if (currentKills >= EnemiesToSpawn)
         {
             waveActive = false;
@@ -103,6 +103,7 @@ public class WaveManager : MonoBehaviour
     // Coroutine for the break between waves
     IEnumerator Break()
     {
+        paused = true;
         yield return new WaitForSeconds(timeBetweenWaves);
         AdvanceWave();
     }
@@ -110,8 +111,7 @@ public class WaveManager : MonoBehaviour
     // Advance wave
     public void AdvanceWave()
     {
-        // TODO fix this
-        //GetComponent<GameStateManager>().ClearWeapons();
+        paused = false;
         // Increment current wave and set wave to active
         currentWave++;
         EnemiesToSpawn = EnemiesToSpawn + 5;

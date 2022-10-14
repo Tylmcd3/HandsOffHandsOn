@@ -9,7 +9,7 @@ public class BombGun : MonoBehaviour
 {
     [SerializeField] private GameObject bombPrefab;
 
-    [SerializeField] private float detonateTime = 2;
+    [SerializeField] private float detonateTime = 0.8f;
     
     [SerializeField] private float speed = 8;
     [SerializeField] private float upward = 0.8f;

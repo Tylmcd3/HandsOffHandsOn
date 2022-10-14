@@ -46,14 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ebd68a023f04fc6b34c6006138d0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 2
-  totalWaves: 5
-  waveActive: 0
+  timeBetweenWaves: 5
+  totalWaves: 3
+  waveActive: 1
   currentWave: 0
+  paused: 0
   currentTime: 0
   waveLength: 3
   currentKills: 0
-  totalKills: 30
+  EnemiesToSpawn: 5
 --- !u!114 &6542678966507336391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +70,8 @@ MonoBehaviour:
   gameActive: 0
   pauseMenu: {fileID: 0}
   endMenu: {fileID: 0}
+  hud: {fileID: 0}
+  weaponsOnGround: 0
   enemiesInScene: 0
 --- !u!114 &1441290146595690993
 MonoBehaviour:

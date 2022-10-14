@@ -114,6 +114,9 @@ GameObject:
   - component: {fileID: -373131651482940160}
   - component: {fileID: 6467084534291610408}
   - component: {fileID: 3675788415479772462}
+  - component: {fileID: 8429487499453310156}
+  - component: {fileID: 8437349550143069916}
+  - component: {fileID: 4649922991984528264}
   m_Layer: 7
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -262,3 +265,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponToDrop: {fileID: 2022020525554770337, guid: 02d333f6bf531c346bb34cf3ed3b1be8, type: 3}
+--- !u!114 &8429487499453310156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478336028895954919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46dd995a181d824a8fe65dcd2199ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8437349550143069916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478336028895954919}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &4649922991984528264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478336028895954919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ba981856ba684c9f05fc15bb40d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPrefab: {fileID: 2794358214757010443, guid: 2e1c4932b5a206c49821511854cdad7d, type: 3}

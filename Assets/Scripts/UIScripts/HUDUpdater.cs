@@ -28,6 +28,8 @@ public class HUDUpdater : MonoBehaviour
 
     [SerializeField] private Color selectedColour;
 
+    private float waveBreakTimer;
+
     private Color defaultColour;
 
     [SerializeField] private Sprite[] guns;
@@ -43,6 +45,7 @@ public class HUDUpdater : MonoBehaviour
         playerGuns = GameObject.Find("Player").GetComponent<Guns>();
         playerHealth = GameObject.Find("Player").GetComponent<Health>();
 
+        waveBreakTimer = waveManager.timeBetweenWaves + 0.01f;
         defaultColour = slots[1].color;
         originalScale = slots[1].gameObject.transform.localScale;
 
@@ -53,8 +56,21 @@ public class HUDUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (waveManager.paused)
+        {
+            // start count down and display in enemycount.text
+            waveBreakTimer -= Time.deltaTime;
+            enemyCount.text = waveBreakTimer.ToString("0.0") + "s until next wave";
+            if (waveBreakTimer <= 0)
+            {
+                waveBreakTimer = waveManager.timeBetweenWaves + 0.01f;
+            }
+        }
+        else
+        {
+            enemyCount.text = (waveManager.waveActive)? (waveManager.EnemiesToSpawn - waveManager.currentKills).ToString() + enemyText : "";
+        }
         waveCount.text = waveText + waveManager.currentWave.ToString();
-        enemyCount.text = (waveManager.waveActive)? (waveManager.EnemiesToSpawn - waveManager.currentKills).ToString() + enemyText : "";
         health.value = playerHealth.CurrHealth;
         ammo.maxValue = playerGuns.currentMaxAmmo;
         ammo.value = playerGuns.currentAmmo;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyDamageAndHealth : MonoBehaviour
 {
     private GameStateManager gsManager;
+    private SpawnDamageText damageText;
     public int baseHealth;
     [SerializeField]
     int currHealth;
@@ -13,6 +14,8 @@ public class EnemyDamageAndHealth : MonoBehaviour
     {
         GameObject manager = GameObject.Find("GameManager");
         gsManager = manager.GetComponent<GameStateManager>();
+
+        damageText = GetComponent<SpawnDamageText>();
         
         currHealth = baseHealth;
     }
@@ -39,13 +42,11 @@ public class EnemyDamageAndHealth : MonoBehaviour
     public void DealDamage(int DamageDealt)
     {
         currHealth -= DamageDealt;
-
+        damageText.SpawnText(DamageDealt);
         if (currHealth < 0) Death();
         
         // make enemy flash on damage
         GetComponent<EnemyFlashOnHit>().FlashColour();
 
     }
-
-
 }
