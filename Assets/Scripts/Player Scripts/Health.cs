@@ -41,7 +41,6 @@ public class Health : MonoBehaviour
         GetComponent<PlayerDamageFlash>().FlashScreen();
         CurrHealth -= Amount;
         TimeOfLastHit = RegenWaitTime;
-        Debug.Log(CurrHealth);
         if (CurrHealth <= 0) Death();
     }
     //Left this as well cos im not sure if we will have health regen
@@ -52,7 +51,6 @@ public class Health : MonoBehaviour
             // 2 hp per tick
             CurrHealth+= (CurrHealth + 2 <= MaxHealth)? 2 : MaxHealth - CurrHealth;
             LastRegen = 0.8f;
-            Debug.Log("CurrHealth is " + CurrHealth);
         }
             
        

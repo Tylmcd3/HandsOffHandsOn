@@ -34,41 +34,69 @@ public class LaserGun : MonoBehaviour
 
     public void ShootLaser(GunClass CurrentGunStruct, LayerMask weaponLayer, Transform shoot)
     {
+        RaycastHit[] hits;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
+        hits = Physics.RaycastAll(ray, 100.0f, ~weaponLayer);
+        if (hits.Length > 0)
         {
             shooting = true;
             timer = CurrentGunStruct.FireRate + 0.01f; // slight fudge just in case
 
-            //CurrentGunStruct.MuzzleFlash.SetActive(true);
             CurrentGunStruct.Clip--;
-
-            // create laser prefab if not already shooting
             if (!currentLaser)
             {
                 // TODO not happy with this location
                 SpawnLaser(shoot);
             }
             // set end point of laser
-            currentLaser.GetComponent<LightningRenderer>().receiverPosition = hit.point;
+            currentLaser.GetComponent<LightningRenderer>().receiverPosition = hits[hits.Length - 1].point;
             //shoot.rotation = Camera.main.transform.rotation;
 
             // enemy damage
-            if (hit.transform.gameObject.CompareTag("Enemy"))
+            for (int i = 0; i < hits.Length; i++)
             {
-                // deal damage
-                Debug.Log("" + damageCounter);
-                
-                damageCounter++;
-                if (damageCounter >= damageCount)
+                if (hits[i].transform.gameObject.CompareTag("Enemy"))
                 {
-                    hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
-                    damageCounter = 0;
-                }
+                    damageCounter++;
+                    if (damageCounter >= damageCount)
+                    {
+                        hits[i].transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
+                        damageCounter = 0;
+                    }
+                }   
             }
-            
         }
+        // if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
+        // {
+        //     shooting = true;
+        //     timer = CurrentGunStruct.FireRate + 0.01f; // slight fudge just in case
+        //
+        //     //CurrentGunStruct.MuzzleFlash.SetActive(true);
+        //     CurrentGunStruct.Clip--;
+        //
+        //     // create laser prefab if not already shooting
+        //     if (!currentLaser)
+        //     {
+        //         // TODO not happy with this location
+        //         SpawnLaser(shoot);
+        //     }
+        //     // set end point of laser
+        //     currentLaser.GetComponent<LightningRenderer>().receiverPosition = hit.point;
+        //     //shoot.rotation = Camera.main.transform.rotation;
+        //
+        //     // enemy damage
+        //     if (hit.transform.gameObject.CompareTag("Enemy"))
+        //     {
+        //         damageCounter++;
+        //         if (damageCounter >= damageCount)
+        //         {
+        //             hit.transform.gameObject.GetComponent<EnemyDamageAndHealth>().DealDamage(CurrentGunStruct.Damage);
+        //             damageCounter = 0;
+        //         }
+        //     }
+        //     
+        // }
     }
 
     private void SpawnLaser(Transform spawnPoint)
