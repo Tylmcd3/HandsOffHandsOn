@@ -35,7 +35,6 @@ public class LaserGun : MonoBehaviour
     public void ShootLaser(GunClass CurrentGunStruct, LayerMask weaponLayer, Transform shoot)
     {
         RaycastHit[] hits;
-        RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         hits = Physics.RaycastAll(ray, 100.0f, ~weaponLayer);
         if (hits.Length > 0)

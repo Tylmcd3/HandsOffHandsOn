@@ -23,11 +23,15 @@ public class HUDUpdater : MonoBehaviour
     [SerializeField] private Slider health;
 
     [SerializeField] private Slider ammo;
+    [SerializeField] private Slider reserve;
+
+    [SerializeField] private Slider ammoReload;
 
     [SerializeField] private Image[] slots;
 
     [SerializeField] private Color selectedColour;
 
+    
     private float waveBreakTimer;
 
     private Color defaultColour;
@@ -70,10 +74,28 @@ public class HUDUpdater : MonoBehaviour
         {
             enemyCount.text = (waveManager.waveActive)? (waveManager.EnemiesToSpawn - waveManager.currentKills).ToString() + enemyText : "";
         }
+
+        ammoReload.gameObject.SetActive(playerGuns.reloading);
+        if (playerGuns.reloading)
+        {
+            ammoReload.maxValue = playerGuns.reloadTime;
+            ammoReload.value += Time.deltaTime;
+            Debug.Log(ammoReload.value);
+        }
+        else
+        {
+            ammoReload.value = 0;
+        }
+        
         waveCount.text = waveText + waveManager.currentWave.ToString();
+        
         health.value = playerHealth.CurrHealth;
+        
         ammo.maxValue = playerGuns.currentMaxAmmo;
         ammo.value = playerGuns.currentAmmo;
+        
+        reserve.maxValue = playerGuns.currentMaxAmmo;
+        reserve.value = playerGuns.currentReserve;
         
         // guns stuff
         // this is hardcoded as 3 becaused rushed

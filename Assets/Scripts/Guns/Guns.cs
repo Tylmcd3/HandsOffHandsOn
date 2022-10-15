@@ -25,8 +25,12 @@ public class Guns : MonoBehaviour
     public bool outOfAmmo;
 
     // Very lazy
-    public int currentAmmo;
-    public int currentMaxAmmo;
+    [HideInInspector] public int currentAmmo;
+    [HideInInspector] public int currentMaxAmmo;
+    [HideInInspector] public int currentReserve;
+    [HideInInspector] public float reloadTime;
+    
+    [HideInInspector] public bool reloading = false;
     // Start is called before the first frame update
 
     void Start()
@@ -49,6 +53,7 @@ public class Guns : MonoBehaviour
         
         currentAmmo = CurrentGunStruct.Clip;
         currentMaxAmmo = CurrentGunStruct.ClipSize;
+        reloadTime = CurrentGunStruct.ReloadTime;
     }
     public void ChangeWeapon(GunEnum weaponToChange)
     {
@@ -62,6 +67,9 @@ public class Guns : MonoBehaviour
                 break;
             }
         }
+
+        reloading = false;
+        reloadTime = CurrentGunStruct.ReloadTime;
         CurrentGunStruct  = GunStore.SwapGun(CurrentGun, CurrentGunStruct, weaponToChange);
         CurrentGun = weaponToChange;
         currentMaxAmmo = CurrentGunStruct.ClipSize;
@@ -85,6 +93,7 @@ public class Guns : MonoBehaviour
             TimeTillNextFire = CurrentGunStruct.ReloadTime;
             CurrentGunStruct.Clip = CurrentGunStruct.ClipSize;
             CurrentGunStruct.CurrReserveAmmo -= CurrentGunStruct.Clip;
+            StartCoroutine(setReloadBool(CurrentGunStruct.ReloadTime));
             //TODO: Play reload anim (Might just move gun down idk)
         }
         else if (CurrentGunStruct.CurrReserveAmmo > 0)
@@ -92,12 +101,20 @@ public class Guns : MonoBehaviour
             TimeTillNextFire = CurrentGunStruct.ReloadTime;
             CurrentGunStruct.Clip = CurrentGunStruct.CurrReserveAmmo;
             CurrentGunStruct.CurrReserveAmmo = 0;
+            StartCoroutine(setReloadBool(CurrentGunStruct.ReloadTime));
         }
         else
         {
             outOfAmmo = CheckAmmo();
             ChangeToNextGun();
         }
+    }
+
+    IEnumerator setReloadBool(float time)
+    {
+        reloading = true;
+        yield return new WaitForSeconds(time);
+        reloading = false;
     }
 
     // returns true if all guns are out of ammo
@@ -300,6 +317,7 @@ public class Guns : MonoBehaviour
         }
 
         currentAmmo = CurrentGunStruct.Clip;
+        currentReserve = CurrentGunStruct.CurrReserveAmmo;
     }
 
 }
