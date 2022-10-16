@@ -26,7 +26,7 @@ public class LightningGun : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f, ~weaponLayer))
+        if (Physics.SphereCast(ray, 0.15f, out hit, 100.0f, ~weaponLayer))
         {
             CurrentGunStruct.MuzzleFlash.SetActive(true);
             CurrentGunStruct.Clip--;
