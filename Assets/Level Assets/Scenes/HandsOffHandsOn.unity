@@ -10260,6 +10260,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6542678966507336391, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 440050681}
+    - target: {fileID: 6542678966507336391, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
+      propertyPath: endMenu
+      value: 
+      objectReference: {fileID: 1106539567}
+    - target: {fileID: 6542678966507336391, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 355020316}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bccb96aa4c0bf647b12d153dbbb6f35, type: 3}
@@ -56357,11 +56369,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000013617410114, guid: 8ec728fea85097b43ad9358333759bfa, type: 3}
   m_PrefabInstance: {fileID: 1419940483}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1420751916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 83818280929693035, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
-  m_PrefabInstance: {fileID: 106655557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1422866828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62522,11 +62529,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013974182346, guid: a4ea7ad660a6e4241aff4002d350fe80, type: 3}
   m_PrefabInstance: {fileID: 1617116840}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1618517425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2043294361001511896, guid: b1d3ff72f1bb3c04ab266d6b87600bc8, type: 3}
-  m_PrefabInstance: {fileID: 106655557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1618782288
 PrefabInstance:
