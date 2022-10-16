@@ -55,7 +55,7 @@ MonoBehaviour:
   _noiseAmplitude: 1.2
   _noiseFrequency: 0.1
   _noiseMotion: 0.1
-  _color: {r: 0.92667377, g: 1.2391626, b: 2.4253683, a: 1}
+  _color: {r: 1.6194133, g: 2.1740067, b: 4.237095, a: 1}
   _mesh: {fileID: 11400000, guid: ae28d7200908fb34ab683612d325defa, type: 2}
   _randomSeed: 0
   _shader: {fileID: 4800000, guid: 5f407f89f9b1b6a48a8b5352c16afef9, type: 3}
