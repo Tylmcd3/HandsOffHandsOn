@@ -36,7 +36,7 @@ public class LaserGun : MonoBehaviour
     {
         RaycastHit[] hits;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hits = Physics.RaycastAll(ray, 0.1f, ~weaponLayer);
+        hits = Physics.RaycastAll(ray, 100.0f, ~weaponLayer);
         if (hits.Length > 0)
         {
             shooting = true;
